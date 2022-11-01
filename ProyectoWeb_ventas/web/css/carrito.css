@@ -1,0 +1,145 @@
+.carrito {
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor_carrito_1 {
+    overflow-y: auto;
+    margin-right: 1%;
+    padding-right: 1%;
+    border-right: 1px solid #ddd;
+}
+
+.table_carrito {
+    border-collapse: collapse;
+    text-align: center;
+
+}
+
+.table_carrito td {
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+}
+
+.table_carrito th {
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    color: white;
+    text-shadow: 0px 0px 10px black;
+    background-color: rgb(255, 180, 19);
+    font-size: 18px;
+}
+
+
+
+/*contenedor 2*/
+.contenedor_carrito_2 {
+    margin-left: 1%;
+}
+
+.carrito_datos_compras {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgb(232, 232, 232);
+    cursor: pointer;
+}
+
+.carrito_datos_compras:hover {
+    background-color: gray;
+    transition: 0.6s;
+}
+
+.linea_carrito {
+    border: 1px solid #ddd;
+}
+
+.datos_carrito h3 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.datos_carrito {
+    width: 250px;
+    border: 1px solid #ddd;
+
+}
+
+.btn_carrito {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+
+.seguir_comprando {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn_carrito a {
+    text-decoration: none;
+    font-size: 20px;
+    background-color: red;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+
+.seguir_comprando a {
+    text-decoration: none;
+    font-size: 20px;
+    background-color: green;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+
+.seguir_comprando a:hover {
+    background-color: rgb(0, 179, 0);
+    transition: 0.6s;
+}
+
+.delete_producto {
+    text-decoration: none;
+    color: white;
+    background-color: red;
+    padding: 5px 19px;
+    font-size: 20px;
+    border-radius: 3px;
+}
+
+.btn_carrito a:hover,
+.delete_producto:hover {
+    background-color: rgb(211, 0, 0);
+    transition: 0.6s;
+}
+
+/*responsive*/
+@media only screen and (max-width:1000px) {
+    .carrito {
+        display: block;
+    }
+
+    .contenedor_carrito_2 {
+        margin-top: 20px;
+    }
+
+    .contenedor_carrito_2 div {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (max-width:300px) {
+    .datos_carrito {
+        width: 100%;
+    }
+}

@@ -1,0 +1,11 @@
+@font-face {
+    font-family: omnes;
+    src: url(../font/Omnes.ttf);
+}
+@font-face{
+	font-family: Roboto-Light;
+	src: url(../font/Roboto-Light.ttf)
+}
+*{
+    font-family: Roboto-Light;
+}
