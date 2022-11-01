@@ -1,0 +1,53 @@
+.contenedor_mensaje_exitoso_login{
+    position: absolute;
+    top: 20px;
+    right:  20px;
+    animation: MensajeError 0.5s ;    
+    display: none;
+}
+.ActivarMensaje {
+    display: flex;
+  
+}
+@keyframes MensajeError {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+    to {
+        top: 20px;
+        opacity: 1;
+         
+    }
+}
+.mensaje_login_conectado{
+    display: flex;
+    justify-content: space-between;   
+    border-radius: 5px;
+    width: 300px;
+}
+.mensaje_login_conectado a{
+    color:white;
+    font-size: 30px;
+}
+.mensaje_login_conectado a:hover{
+    transition: 0.5s;
+    color: #cccccc;
+}
+.mensaje_login_conectado div{
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 5px 10px;
+    color: white;
+}
+/*COLORES*/
+.UsuarioNoExiste{
+    background-color: red; 
+}
+.UsuarioSiExiste{
+   background-color: green;   
+}
+.ValidacionERROR{
+      background-color: #E72900; 
+}

@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="css/droptown.css">
         <link rel="stylesheet" href="css/carrito.css">
         <link rel="stylesheet" href="css/tienda.css">
-        <link rel="stylesheet" href="css/ErrorMensajeLogin.css">
+        <link rel="stylesheet" href="css/MensajesModal.css">
         <link rel="stylesheet" href="css/dashboard-user.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -31,6 +31,11 @@
         String NickName = (String) session.getAttribute("NickName");
         String MensajeErrorLogin = (String) session.getAttribute("MensajeErrorLogin");
         Double SaldoUsuario = (Double) session.getAttribute("SaldoUsuario");
+
+        //Mensajes del login
+        String Mensaje = (String) session.getAttribute("Mensaje");
+        String Identificador = (String) session.getAttribute("Identificador");
+        String accion = (String) session.getAttribute("accion");
     %>
 
     <body>
@@ -60,6 +65,7 @@
                             <a href="#">Saldo:$ <%=SaldoUsuario%></a>
                             <a href="#">Ajustes</a>
                             <a href="#">Recargar Saldo</a>
+                            <a href="session?logout=1">Cerrar sesion</a>
                         </div>
                     </div>
                     <div class="barra_responsive">
@@ -118,37 +124,11 @@
                 </div>
             </div>
         </nav>
-
-
-
-       
         <%
             }
         %>
- <div class="contenedor_mensaje_error " id="<%=MensajeErrorLogin%>">
-            <div class="mensaje_error">
-                <div class="mensaje">
-                    <p>El Usuario o Contrasena  incorrecto por favor Vuelva a Ingresar!</p>
-                </div>
-                <div>
-                    <a href="#" id="cerrarMensajeError">
-                        <li class="fa fa-close"></li>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <script>
-        const MensajeErrorLogin = document.getElementById('MensajeErrorLogin');
-        if(MensajeErrorLogin != null){
-            MensajeErrorLogin.classList.add("ActivarMensaje");
-        }else{
-            MensajeErrorLogin.classList.remove("ActivarMensaje");
-        }
-        const cerrarMensajeError = document.getElementById('cerrarMensajeError');
-        cerrarMensajeError.addEventListener('click',()=>{
-            MensajeErrorLogin.classList.remove("ActivarMensaje");
-        });
-        </script>
+
+
         <br><br><br>
         <!-- dashboard user-->
 
@@ -355,6 +335,21 @@
                 <p>Desarrollador por &copy SEBASTIAN8026 </p>
             </div>
         </footer>
+
+        <!-- MENSAJE LATERAL DE LOGIN-->
+        <div class="contenedor_mensaje_exitoso_login " id="<%=Identificador%>">
+            <div class="mensaje_login_conectado <%=accion%>">
+                <div class="mensaje">
+                    <p><%=Mensaje%></p>
+                </div>
+                <div>
+                    <a id="CerrarMensaje-Session">
+                        <li class="fa fa-close"></li>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <script src="js/Mensajes-login.js"></script>
         <script src="js/modal-barra-responsive.js"></script>
         <script src="js/modal-login-register.js"></script>
         <script src="https://use.fontawesome.com/87ad7ac135.js"></script>
