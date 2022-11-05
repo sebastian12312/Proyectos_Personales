@@ -31,6 +31,7 @@ public class FuncionesSession {
                     Respuesta =null;
                 }
             }
+             SQLSever.getConexion().close();
         } catch (Exception e) {
             System.out.println("ERROR:" + e);
         }
@@ -50,6 +51,7 @@ public class FuncionesSession {
                 datos.setTipo_Usuario(rs.getString(3));
                 datos.setEstado_Usuario(rs.getString(4));
             }
+             SQLSever.getConexion().close();
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -72,7 +74,8 @@ public class FuncionesSession {
                 datos.setContraseña_Usuario(rs.getString(7));
                 datos.setGenero_Usuario(rs.getString(8));
                 datos.setFecha_Nacimiento(rs.getString(9));
-            }
+            } 
+            SQLSever.getConexion().close();
         } catch (Exception e) {
             System.out.println(e);
         }

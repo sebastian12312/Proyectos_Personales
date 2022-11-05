@@ -4,6 +4,9 @@
     Author     : sebastian
 --%>
 
+<%@page import="clases.cart"%>
+<%@page import="clases.Producto"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -52,7 +55,8 @@
                     </div>
                     <div class="header_opciones">
                         <ul class="opciones_header">
-                            <li><a href="Tienda">Tienda</a></li>
+                            <li><a href="#">Tienda</a></li>
+                                <li><a href="carrito.jsp">Carrito (${contador})</a></li>
                             <li><a href="#">Contacto</a></li>
                             <li> <a href="#">Colaboradores</a></li>
                         </ul>
@@ -106,6 +110,7 @@
                     <div class="header_opciones">
                         <ul class="opciones_header">
                             <li><a href="Tienda">Tienda</a></li>
+                              <li><a href="carrito.jsp">Carrito (${contador})</a></li>
                             <li><a href="#">Contacto</a></li>
                             <li> <a href="#">Colaboradores</a></li>
                         </ul>
@@ -127,90 +132,55 @@
         <%
             }
         %>
+        <!-- Tienda -->
+        <%
+            ArrayList<Producto> Listar = (ArrayList<Producto>) request.getAttribute("ListarProducto");
+        %>
+        <div class="tienda">
+            <div class="contenedor_tienda">
+                <%
+                    for (int i = 1; i < Listar.size(); i++) {
+                        Producto producto = Listar.get(i);
 
-
-        <br><br><br>
-        <!-- dashboard user-->
-
-        <div class="contenedor_dashboard">
-            <div class="contenedor_dash_1">
-                <div class="datos_usuario_dashboard">
-                    <h1>Datos Usuario</h1>
-                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
-                        <div class="datos_saldo_dash">
-                            <div>
-                                <p>Saldo: $</p>
-                            </div>
-                            <div>
-                                <p>30000</p>
-                            </div>
+                %>
+                <div class="card_tienda">
+                    <h3><%=producto.getNombre_Producto()%></h3>
+                    <img src="img/axe2.png" alt="">
+                    <div class="datos_card_tienda">
+                        <div>
+                            <p>Precio: $</p>
                         </div>
-                    </a>
-
-                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
-                        <div class="datos_saldo_dash">
-                            <div>
-                                <p>Recargar Saldo</p>
-                            </div>
-                            <div>
-                                <p></p>
-                            </div>
+                        <div>
+                            <p><%=producto.getPrecioUnidad_Producto()%></p>
                         </div>
-                    </a>
-
-
-                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
-                        <div class="datos_saldo_dash">
-                            <div>
-                                <p>Cerrar Sesion</p>
-                            </div>
-                            <div>
-                                <p></p>
-                            </div>
+                    </div>
+                    <div class="datos_card_tienda">
+                        <div>
+                            <p>Stock:</p>
                         </div>
-                    </a>
-                </div>
-
+                        <div>
+                            <p><%=producto.getCantidad_producto()%></p>
+                        </div>
+                    </div>
+                    <div class="datos_card_tienda">
+                        <div>
+                            <p>Codigo: </p>
+                        </div>
+                        <div>
+                            <p><%=producto.getCodigo_Producto()%></p>
+                        </div>
+                    </div>
+                    <div class="btn_tienda">
+                        <a href="Agregar?codigo=<%=producto.getCodigo_Producto()%>">ADD</a>
+                    </div>
+                </div>      
+                <%                    
+                    }
+                %>
             </div>
-            <div class="contenedor_dash_2">
-                <h1>Mis Compras</h1>
-                <div>
-                    <table class="table_dashboard">
-                        <tr>
-                            <th>#</th>
-                            <th>Codigo Compra</th>
-                            <th>Codigo Usuario</th>
-                            <th>Descuento</th>
-                            <th>IGV</th>
-                            <th>Total a Pagar</th>
-                            <th>Fecha Compra</th>
-                            <th>Hora Compra</th>
-                            <th>Estado Boleta</th>
-                            <th>Accion</th>
-                        </tr>
-                        <tr>
-                            <td>1
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>
-                                <a href="#" class="delete_producto"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
-
-                    </table>
-                </div>
-            </div>
-
         </div>
 
 
-        <br><br><br>
         <!-- LOGIN -->
         <div class="contenedor_ventana_modal" id="ventana_login">
             <form action="session" method="POST" class="form_login">
@@ -349,6 +319,10 @@
                 </div>
             </div>
         </div>
+        <%
+            ArrayList<cart> carrito = (ArrayList<cart>) request.getAttribute("carrito");
+            session.setAttribute("carrito", carrito);
+        %>
         <script src="js/Mensajes-login.js"></script>
         <script src="js/modal-barra-responsive.js"></script>
         <script src="js/modal-login-register.js"></script>

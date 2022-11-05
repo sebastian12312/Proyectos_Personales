@@ -4,6 +4,9 @@
     Author     : sebastian
 --%>
 
+<%@page import="java.sql.Array"%>
+<%@page import="clases.cart"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -129,68 +132,37 @@
         %>
 
 
-        <br><br><br>
-        <!-- dashboard user-->
 
-        <div class="contenedor_dashboard">
-            <div class="contenedor_dash_1">
-                <div class="datos_usuario_dashboard">
-                    <h1>Datos Usuario</h1>
-                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
-                        <div class="datos_saldo_dash">
-                            <div>
-                                <p>Saldo: $</p>
-                            </div>
-                            <div>
-                                <p>30000</p>
-                            </div>
-                        </div>
-                    </a>
+        <%
 
-                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
-                        <div class="datos_saldo_dash">
-                            <div>
-                                <p>Recargar Saldo</p>
-                            </div>
-                            <div>
-                                <p></p>
-                            </div>
-                        </div>
-                    </a>
+        ArrayList<cart> carrito = (ArrayList<cart>) session.getAttribute("carrito");
+        %>
+       
+        <!-- CARRITO -->
 
-
-                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
-                        <div class="datos_saldo_dash">
-                            <div>
-                                <p>Cerrar Sesion</p>
-                            </div>
-                            <div>
-                                <p></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-            <div class="contenedor_dash_2">
-                <h1>Mis Compras</h1>
-                <div>
-                    <table class="table_dashboard">
+        <div class="carrito">
+            <div class="contenedor_carrito_1">
+                <table class="table_carrito">
+                    <tr>
+                        <th>#</th>
+                        <th>Codigo Producto</th>
+                        <th>Nombre Producto</th>
+                        <th>Descripcion Producto</th>
+                        <th>Imagen Producto</th>
+                        <th>Cantidad Producto</th>
+                        <th>Precio Producto</th>
+                        <th>Descuento Producto</th>
+                        <th>SubTotal</th>
+                        <th>Accion</th>
+                    </tr>
+                    <%
+                    for (int i = 1; i < carrito.size(); i++) {
+                cart c = carrito.get(i);
+            
+                     %>
                         <tr>
-                            <th>#</th>
-                            <th>Codigo Compra</th>
-                            <th>Codigo Usuario</th>
-                            <th>Descuento</th>
-                            <th>IGV</th>
-                            <th>Total a Pagar</th>
-                            <th>Fecha Compra</th>
-                            <th>Hora Compra</th>
-                            <th>Estado Boleta</th>
-                            <th>Accion</th>
-                        </tr>
-                        <tr>
-                            <td>1
-                            <td>ABC</td>
+                            <td><%=c.getNombreProducto()%></td>
+                            <td>ss</td>
                             <td>ABC</td>
                             <td>ABC</td>
                             <td>ABC</td>
@@ -203,14 +175,61 @@
                             </td>
                         </tr>
 
-                    </table>
+                <%
+                    }
+                %>
+                </table>
+            </div>
+            <div class="contenedor_carrito_2">
+                <div class="datos_carrito">
+
+                    <h3>carrito de compras</h3>
+                    <div class="carrito_datos_compras">
+                        <div>
+                            <span>SubTotal:</span>
+                        </div>
+                        <div>
+                            <span>3000</span>
+                        </div>
+                    </div>
+                    <div class="carrito_datos_compras">
+                        <div>
+                            <span>IGV:</span>
+                        </div>
+                        <div>
+                            <span>3000</span>
+                        </div>
+                    </div>
+                    <div class="carrito_datos_compras">
+                        <div>
+                            <span>Descuento:</span>
+                        </div>
+                        <div>
+                            <span>3000</span>
+                        </div>
+                    </div>
+                    <div class="linea_carrito">
+
+                    </div>
+                    <div class="carrito_datos_compras">
+                        <div>
+                            <span>Precio Final:</span>
+                        </div>
+                        <div>
+                            <span>3000</span>
+                        </div>
+                    </div>
+                    <div class="btn_carrito">
+                        <a href="#">Generar Compra</a>
+                    </div>
+                    <div class="seguir_comprando">
+                        <a href="#">Seguir Comprando</a>
+                    </div>
+
                 </div>
             </div>
-
         </div>
 
-
-        <br><br><br>
         <!-- LOGIN -->
         <div class="contenedor_ventana_modal" id="ventana_login">
             <form action="session" method="POST" class="form_login">
@@ -353,6 +372,7 @@
         <script src="js/modal-barra-responsive.js"></script>
         <script src="js/modal-login-register.js"></script>
         <script src="https://use.fontawesome.com/87ad7ac135.js"></script>
+
 
     </body>
 </html>
