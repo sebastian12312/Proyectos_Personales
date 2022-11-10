@@ -9,6 +9,7 @@ package clases;
  * @author sebastian
  */
 public class cart {
+    private int contadorCart;
     private String CodigoCarrito;
     private String NombreProducto;
     private String DescricionCarrito;
@@ -21,7 +22,8 @@ public class cart {
     public cart() {
     }
 
-    public cart(String CodigoCarrito, String NombreProducto, String DescricionCarrito, int CantidadCompra, Double PrecioUnidad, Double DescuentoProducto, Double SubTotal, String ImagenProducto) {
+    public cart(int contadorCart, String CodigoCarrito, String NombreProducto, String DescricionCarrito, int CantidadCompra, Double PrecioUnidad, Double DescuentoProducto, Double SubTotal, String ImagenProducto) {
+        this.contadorCart = contadorCart;
         this.CodigoCarrito = CodigoCarrito;
         this.NombreProducto = NombreProducto;
         this.DescricionCarrito = DescricionCarrito;
@@ -30,6 +32,14 @@ public class cart {
         this.DescuentoProducto = DescuentoProducto;
         this.SubTotal = SubTotal;
         this.ImagenProducto = ImagenProducto;
+    }
+
+    public int getContadorCart() {
+        return contadorCart;
+    }
+
+    public void setContadorCart(int contadorCart) {
+        this.contadorCart = contadorCart;
     }
 
     public String getCodigoCarrito() {
@@ -95,6 +105,8 @@ public class cart {
     public void setImagenProducto(String ImagenProducto) {
         this.ImagenProducto = ImagenProducto;
     }
+
+   
     
     
 }

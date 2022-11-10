@@ -31,6 +31,7 @@
     </head>
     <%
         String CodigoUsuario = (String) session.getAttribute("CodigoUsuario");
+        session.setAttribute("CodigoUsuario", CodigoUsuario);
         String NickName = (String) session.getAttribute("NickName");
         String MensajeErrorLogin = (String) session.getAttribute("MensajeErrorLogin");
         Double SaldoUsuario = (Double) session.getAttribute("SaldoUsuario");
@@ -134,15 +135,14 @@
 
 
         <%
-
-        ArrayList<cart> carrito = (ArrayList<cart>) session.getAttribute("carrito");
+            ArrayList<cart> carrito = (ArrayList<cart>) session.getAttribute("cart");
         %>
-       
-        <!-- CARRITO -->
 
+        <!-- CARRITO -->
+        <a href="remove">Eliminar</a>
         <div class="carrito">
             <div class="contenedor_carrito_1">
-                <table class="table_carrito">
+                <table class="table_carrito" style="max-width: 1500px">
                     <tr>
                         <th>#</th>
                         <th>Codigo Producto</th>
@@ -156,48 +156,74 @@
                         <th>Accion</th>
                     </tr>
                     <%
-                    for (int i = 1; i < carrito.size(); i++) {
-                cart c = carrito.get(i);
-            
-                     %>
-                        <tr>
-                            <td><%=c.getNombreProducto()%></td>
-                            <td>ss</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>ABC</td>
-                            <td>
-                                <a href="#" class="delete_producto"><i class="fa fa-trash"></i></a>
-                            </td>
-                        </tr>
+                        if (carrito != null) {
 
-                <%
-                    }
-                %>
+
+                    %>    
+                    <%                        int contadorCarrito = 0;
+                        for (int i = 0; i < carrito.size(); i++) {
+                            cart car = carrito.get(i);
+                            contadorCarrito++;
+                    %>
+                    <tr>
+                        <td><%=contadorCarrito%></td>
+                        <td><%=car.getCodigoCarrito()%></td>
+                        <td><%=car.getNombreProducto()%></td>
+                        <td><%=car.getDescricionCarrito()%></td>
+                        <td ><img  src="img/axe.png" alt="ERROR"/></td>
+                        <td><%=car.getCantidadCompra()%></td>
+                        <td><%=car.getPrecioUnidad()%></td>
+                        <td><%=car.getDescuentoProducto()%></td>
+                        <td><%=car.getSubTotal()%></td>
+                        <td>
+                            <a href="remove?remove=<%=car.getCodigoCarrito()%>" class="delete_producto"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <%
+                        }
+                    %>      
+                    <%
+                    } else {
+                    %>
+                    <tr >
+                        <td colspan="10">
+                            <h3>NO HAY PRODUCTOS EN LA BOLSA</h3>
+                            <img src="https://olsi-trade.ru/local/templates/olsi/img/icon/empty-basket.svg" alt="alt"/>
+                        </td>                   
+                    </tr>
+                    <%
+                        }
+                    %>
+
+
+
+
                 </table>
             </div>
             <div class="contenedor_carrito_2">
+               
                 <div class="datos_carrito">
-
                     <h3>carrito de compras</h3>
                     <div class="carrito_datos_compras">
                         <div>
                             <span>SubTotal:</span>
                         </div>
+                        <%
+                            Double TotalCarrito = (Double) request.getAttribute("TotalCarrito");
+                        %>
                         <div>
-                            <span>3000</span>
+                            <span><%=TotalCarrito%></span>
                         </div>
                     </div>
                     <div class="carrito_datos_compras">
+                        <%
+                            String IGV = (String) request.getAttribute("IGV");
+                        %>
                         <div>
                             <span>IGV:</span>
                         </div>
                         <div>
-                            <span>3000</span>
+                            <span><%=IGV%></span>
                         </div>
                     </div>
                     <div class="carrito_datos_compras">
@@ -205,7 +231,10 @@
                             <span>Descuento:</span>
                         </div>
                         <div>
-                            <span>3000</span>
+                            <%
+                                String Descuento = (String) request.getAttribute("Descuento");
+                            %>
+                            <span><%=Descuento%> %</span>
                         </div>
                     </div>
                     <div class="linea_carrito">
@@ -216,17 +245,19 @@
                             <span>Precio Final:</span>
                         </div>
                         <div>
-                            <span>3000</span>
+                            <%
+                                String PrecioFinal = (String) request.getAttribute("PrecioFinal");
+                            %>
+                            <span><%=PrecioFinal%></span>
                         </div>
                     </div>
                     <div class="btn_carrito">
-                        <a href="#">Generar Compra</a>
+                        <a href="Comprar">Generar Compra</a>
                     </div>
                     <div class="seguir_comprando">
                         <a href="#">Seguir Comprando</a>
                     </div>
-
-                </div>
+                </div>                   
             </div>
         </div>
 

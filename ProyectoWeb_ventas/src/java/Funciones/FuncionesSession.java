@@ -81,4 +81,14 @@ public class FuncionesSession {
         }
         return datos;
     }
+    public int ActualizarSaldo(String CodigoUsuario, double NuevoSaldo){    
+        try {
+            ps = SQLSever.getConexion().prepareStatement("update datosUsuario set saldo_usuario =? where codigo_usuario =?");
+            ps.setDouble(1, NuevoSaldo);
+            ps.setString(2, CodigoUsuario);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+        return 1;
+    }
 }

@@ -7,7 +7,6 @@ package servlets;
 import clases.cart;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,40 +19,31 @@ import javax.servlet.http.HttpSession;
  *
  * @author sebastian
  */
-@WebServlet(name = "carrito", urlPatterns = {"/carrito"})
-public class carrito extends HttpServlet {
+@WebServlet(name = "remove", urlPatterns = {"/remove"})
+public class remove extends HttpServlet {
 
-    DecimalFormat formatoDecinal2 = new DecimalFormat("#.00");
-    DecimalFormat formatoDecinal1 = new DecimalFormat("#");
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
        
-        ArrayList<cart> cart = (ArrayList<cart>) session.getAttribute("ListaCarrito");
-        double TotalCarrito = 0.0;
-        double DescuentoIGV = 0.18;
-        double IGV=0.0;
-        double Descuento = 0.50;
-        double DescuentoPorcentaje;
-        double PrecioFinal=0.0;
-                
-        for (int i = 0; i < cart.size(); i++) {
-            TotalCarrito = TotalCarrito + cart.get(i).getSubTotal();
-        }
-        IGV = TotalCarrito * DescuentoIGV;
-        String RespuestIGV = formatoDecinal2.format(IGV);
-        PrecioFinal = TotalCarrito * Descuento;
-        String PrecioF = formatoDecinal2.format(PrecioFinal);
-        DescuentoPorcentaje = Descuento * 100;
-        String StringDesc = formatoDecinal1.format(DescuentoPorcentaje);
-        //
-        request.setAttribute("PrecioFinal", PrecioF);
-        request.setAttribute("Descuento", StringDesc);
-        request.setAttribute("TotalCarrito", TotalCarrito);
-        request.setAttribute("IGV", RespuestIGV);
-        session.setAttribute("cart", cart);        
-        request.getRequestDispatcher("carrito.jsp").forward(request, response);
-       
+       HttpSession session = request.getSession();
+       String codigo = request.getParameter("remove");
+       if(codigo != null){
+       ArrayList<cart> cart = (ArrayList<cart>) session.getAttribute("carrito");        
+       cart.clear();
+       request.getRequestDispatcher("carrito.jsp").forward(request, response);
+       }
+      
+     
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

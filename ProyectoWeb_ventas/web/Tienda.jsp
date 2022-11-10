@@ -34,7 +34,7 @@
         String NickName = (String) session.getAttribute("NickName");
         String MensajeErrorLogin = (String) session.getAttribute("MensajeErrorLogin");
         Double SaldoUsuario = (Double) session.getAttribute("SaldoUsuario");
-
+        
         //Mensajes del login
         String Mensaje = (String) session.getAttribute("Mensaje");
         String Identificador = (String) session.getAttribute("Identificador");
@@ -56,7 +56,7 @@
                     <div class="header_opciones">
                         <ul class="opciones_header">
                             <li><a href="#">Tienda</a></li>
-                                <li><a href="carrito.jsp">Carrito (${contador})</a></li>
+                            <li><a href="carrito">Carrito ${contador}</a></li>
                             <li><a href="#">Contacto</a></li>
                             <li> <a href="#">Colaboradores</a></li>
                         </ul>
@@ -110,7 +110,7 @@
                     <div class="header_opciones">
                         <ul class="opciones_header">
                             <li><a href="Tienda">Tienda</a></li>
-                              <li><a href="carrito.jsp">Carrito (${contador})</a></li>
+                              <li><a href="carrito">Carrito ${contador}</a></li>
                             <li><a href="#">Contacto</a></li>
                             <li> <a href="#">Colaboradores</a></li>
                         </ul>
@@ -139,9 +139,8 @@
         <div class="tienda">
             <div class="contenedor_tienda">
                 <%
-                    for (int i = 1; i < Listar.size(); i++) {
+                    for (int i = 0; i < Listar.size(); i++) {
                         Producto producto = Listar.get(i);
-
                 %>
                 <div class="card_tienda">
                     <h3><%=producto.getNombre_Producto()%></h3>
@@ -319,10 +318,7 @@
                 </div>
             </div>
         </div>
-        <%
-            ArrayList<cart> carrito = (ArrayList<cart>) request.getAttribute("carrito");
-            session.setAttribute("carrito", carrito);
-        %>
+       
         <script src="js/Mensajes-login.js"></script>
         <script src="js/modal-barra-responsive.js"></script>
         <script src="js/modal-login-register.js"></script>

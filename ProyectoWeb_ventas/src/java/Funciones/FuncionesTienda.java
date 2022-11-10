@@ -42,7 +42,7 @@ public class FuncionesTienda {
     public Producto BuscarProducto(String Codigo){
         Producto producto = new Producto();
         try {
-            ps = SQLSever.getConexion().prepareStatement("select * from producto where codigo_producto=? and estado_producto'ACTIVO'");
+            ps = SQLSever.getConexion().prepareStatement("select * from producto where codigo_producto=?");
             ps.setString(1, Codigo);
             rs = ps.executeQuery();
             while (rs.next()) {
