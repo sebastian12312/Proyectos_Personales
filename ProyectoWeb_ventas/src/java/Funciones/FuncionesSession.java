@@ -16,7 +16,19 @@ public class FuncionesSession {
 
     PreparedStatement ps;
     ResultSet rs;
-
+    public int ActualizarSaldo(String CodigoUsuario, Double NuevoSaldo){ 
+        int valor = 0;
+        try {
+            ps = SQLSever.getConexion().prepareStatement("update datosUsuario set saldo_usuario=? where codigo_usuario =?");
+            ps.setDouble(1, NuevoSaldo);
+            ps.setString(2, CodigoUsuario);            
+            ps.executeUpdate();
+            
+            
+        } catch (Exception e) {
+        }
+        return 1;
+    }
     public String ValidacionLogin(String Id_Usuario, String Password_Usuario) {
         String Respuesta = null;
         try {
@@ -81,14 +93,5 @@ public class FuncionesSession {
         }
         return datos;
     }
-    public int ActualizarSaldo(String CodigoUsuario, double NuevoSaldo){    
-        try {
-            ps = SQLSever.getConexion().prepareStatement("update datosUsuario set saldo_usuario =? where codigo_usuario =?");
-            ps.setDouble(1, NuevoSaldo);
-            ps.setString(2, CodigoUsuario);
-            ps.executeUpdate();
-        } catch (Exception e) {
-        }
-        return 1;
-    }
+    
 }

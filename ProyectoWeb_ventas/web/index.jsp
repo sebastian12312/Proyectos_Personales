@@ -47,14 +47,15 @@
             <div class="contenedor_header">
                 <div class="header_1">
                     <div class="header_titulo">
-                        <h1><a href="#" class="titulo_responsive_off">Sistema ventas ${saldo}</a></h1>
-                        <h1><a href="#" class="titulo_responsive">SV</a></h1>
+                        <h1><a href="index.jsp" class="titulo_responsive_off">Sistema ventas ${saldo}</a></h1>
+                        <h1><a href="index.jsp" class="titulo_responsive">SV</a></h1>
                     </div>
                     <div class="header_opciones">
                         <ul class="opciones_header">
                             <li><a href="Tienda">Tienda</a></li>
                             <li><a href="#">Contacto</a></li>
                             <li> <a href="#">Colaboradores</a></li>
+                            <li> <a href="usuario/MisCompras.jsp">Mis compras</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -63,6 +64,7 @@
                         <a href="#" ><%=NickName%></a>
                         <div class="contenedor_droptown">
                             <a href="#">Saldo:$ <%=SaldoUsuario%></a>
+                            <a href="usuario/MisCompras.jsp">Mis Compras</a>
                             <a href="#">Ajustes</a>
                             <a href="#">Recargar Saldo</a>
                             <a href="session?logout=1">Cerrar sesion</a>
@@ -83,6 +85,7 @@
                     <div class="a">
                         <ul class="opciones_responsive">
                             <li><a href="#">Saldo: $ 3000</a></li>
+                            <li><a href="usuario/MisCompras.jsp"></a></li>
                             <li><a href="#">Tienda</a></li>
                             <li><a href="#">Contacto</a></li>
                             <li> <a href="#">Colaboradores</a></li>
@@ -100,8 +103,8 @@
             <div class="contenedor_header">
                 <div class="header_1">
                     <div class="header_titulo">
-                        <h1><a href="#" class="titulo_responsive_off">Sistema ventas</a></h1>
-                        <h1><a href="#" class="titulo_responsive">SV</a></h1>
+                        <h1><a href="index.jsp" class="titulo_responsive_off">Sistema ventas</a></h1>
+                        <h1><a href="index.jsp" class="titulo_responsive">SV</a></h1>
                     </div>
                     <div class="header_opciones">
                         <ul class="opciones_header">

@@ -49,17 +49,26 @@ public class Comprar extends HttpServlet {
                 TotalCarrito = TotalCarrito + cart.get(i).getSubTotal();
             }
              PrecioFinal = TotalCarrito -(TotalCarrito * Descuento);
-            if (usuario.getSaldo_Usuario()>= PrecioFinal) {
+            if (PrecioFinal <= usuario.getSaldo_Usuario()) {
                 Respuesta = FuncionCompras.RegistrarCompra(CodigoCompra, codigoUsuario, TotalCarrito, PrecioFinal, "12-12-12", EstadoCompra);
+                    
                 if (Respuesta == 1) {                    
                     for (int i = 0; i < cart.size(); i++) {
                         carrito = cart.get(i);
                         FuncionCompras.ResgistrarDetallesCompras(CodigoCompra, carrito.getCodigoCarrito(), carrito.getNombreProducto(), carrito.getDescricionCarrito(), carrito.getCantidadCompra(), carrito.getPrecioUnidad(), carrito.getPrecioUnidad(), Descuento);
                     }
-                    cart.clear();
+                    cart.clear(); 
                     double NuevoSaldo = usuario.getSaldo_Usuario() - PrecioFinal;
-                    funcioneSession.ActualizarSaldo(codigoUsuario, NuevoSaldo);
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    int respuestaSaldo = funcioneSession.ActualizarSaldo(codigoUsuario, NuevoSaldo);
+                    if (respuestaSaldo == 1) {
+                         MensajeCompra = "Compra Exitosa";
+                         request.setAttribute("MensajeCompra", MensajeCompra);
+                         request.getRequestDispatcher("carrito").forward(request, response);
+                    }else{
+                        
+                         request.getRequestDispatcher("index.jsp").forward(request, response);
+                    }
+                   
                 }else{
                     MensajeCompra = "Producto No disponible Intentar Mas Tarde!";
                     request.getRequestDispatcher(MensajeCompra);

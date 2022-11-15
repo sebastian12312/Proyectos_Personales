@@ -4,34 +4,36 @@
     Author     : sebastian
 --%>
 
-<%@page import="java.sql.Array"%>
-<%@page import="clases.cart"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@page session="true" %>
 <%@page import="servlets.session"%>
+<%@page import="clases.compras"%>
+<%@page import="Funciones.FuncionesCompras"%>
 <html lang="en">   
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Proyecto web</title>
-        <link rel="stylesheet" href="css/fuente.css">
-        <link rel="stylesheet" href="css/header-footer.css">
-        <link rel="stylesheet" href="css/ventana-modal-login-register.css">
-        <link rel="stylesheet" href="css/barra-responsive.css">
-        <link rel="stylesheet" href="css/droptown.css">
-        <link rel="stylesheet" href="css/carrito.css">
-        <link rel="stylesheet" href="css/tienda.css">
-        <link rel="stylesheet" href="css/MensajesModal.css">
-        <link rel="stylesheet" href="css/dashboard-user.css">
+        <link rel="stylesheet" href="../css/fuente.css">
+        <link rel="stylesheet" href="../css/header-footer.css">
+        <link rel="stylesheet" href="../css/ventana-modal-login-register.css">
+        <link rel="stylesheet" href="../css/barra-responsive.css">
+        <link rel="stylesheet" href="../css/droptown.css">
+        <link rel="stylesheet" href="../css/carrito.css">
+        <link rel="stylesheet" href="../css/tienda.css">
+        <link rel="stylesheet" href="../css/MensajesModal.css">
+        <link rel="stylesheet" href="../css/dashboard-user.css">
+        <link rel="stylesheet" href="../css/404.css">
+        <link rel="stylesheet" href="../css/usuario.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <%
         String CodigoUsuario = (String) session.getAttribute("CodigoUsuario");
-        session.setAttribute("CodigoUsuario", CodigoUsuario);
         String NickName = (String) session.getAttribute("NickName");
         String MensajeErrorLogin = (String) session.getAttribute("MensajeErrorLogin");
         Double SaldoUsuario = (Double) session.getAttribute("SaldoUsuario");
@@ -51,12 +53,13 @@
             <div class="contenedor_header">
                 <div class="header_1">
                     <div class="header_titulo">
-                        <h1><a href="index.jsp" class="titulo_responsive_off">Sistema ventas ${saldo}</a></h1>
-                        <h1><a href="index.jsp" class="titulo_responsive">SV</a></h1>
+                        <h1><a href="../index.jsp" class="titulo_responsive_off">Sistema ventas ${saldo}</a></h1>
+                        <h1><a href="../index.jsp" class="titulo_responsive">SV</a></h1>
                     </div>
                     <div class="header_opciones">
                         <ul class="opciones_header">
-                            <li><a href="Tienda">Tienda</a></li>
+                            <li><a href="../Tienda">Tienda</a></li>
+                            <li><a href="../carrito">carrito ${contador}</a></li>
                             <li><a href="#">Contacto</a></li>
                             <li> <a href="#">Colaboradores</a></li>
                         </ul>
@@ -67,10 +70,10 @@
                         <a href="#" ><%=NickName%></a>
                         <div class="contenedor_droptown">
                             <a href="#">Saldo:$ <%=SaldoUsuario%></a>
-                            <a href="usuario/MisCompras.jsp">Mis Compras</a>
+                            <a href="../usuario/MisCompras.jsp">Mis Compras</a>
                             <a href="#">Ajustes</a>
                             <a href="#">Recargar Saldo</a>
-                            <a href="session?logout=1">Cerrar sesion</a>
+                            <a href="../session?logout=1">Cerrar sesion</a>
                         </div>
                     </div>
                     <div class="barra_responsive">
@@ -105,8 +108,8 @@
             <div class="contenedor_header">
                 <div class="header_1">
                     <div class="header_titulo">
-                        <h1><a href="index.jsp" class="titulo_responsive_off">Sistema ventas</a></h1>
-                        <h1><a href="index.jsp" class="titulo_responsive">SV</a></h1>
+                        <h1><a href="../index.jsp" class="titulo_responsive_off">Sistema ventas</a></h1>
+                        <h1><a href="../index.jsp" class="titulo_responsive">SV</a></h1>
                     </div>
                     <div class="header_opciones">
                         <ul class="opciones_header">
@@ -134,141 +137,150 @@
         %>
 
 
-
         <%
-            ArrayList<cart> carrito = (ArrayList<cart>) session.getAttribute("cart");
+            if (CodigoUsuario != null) {
         %>
 
-        <!-- CARRITO -->
-        <br><br><br><br>        
-        <div class="carrito">
-            <div class="contenedor_carrito_1">
-                <table class="table_carrito" style="max-width: 1500px">
-                    <tr>
-                        <th>#</th>
-                        <th>Codigo Producto</th>
-                        <th>Nombre Producto</th>
-                        <th>Descripcion Producto</th>
-                        <th>Imagen Producto</th>
-                        <th>Cantidad Producto</th>
-                        <th>Precio Producto</th>
-                        <th>Descuento Producto</th>
-                        <th>SubTotal</th>
-                        <th>Accion</th>
-                    </tr>
-                    <%
-                        if (carrito.size() > 0) {
+
+        <%
+            FuncionesCompras funcionesCompras = new FuncionesCompras();
+            ArrayList<compras> Lista = new ArrayList();
+            compras Miscompras = new compras();
+            Lista = funcionesCompras.MisCompras(CodigoUsuario);
+
+        %>
 
 
-                    %>    
-                    <%                        int contadorCarrito = 0;
-                        for (int i = 0; i < carrito.size(); i++) {
-                            cart car = carrito.get(i);
-                            contadorCarrito++;
-                    %>
-                    <tr>
-                        <td><%=contadorCarrito%></td>
-                        <td><%=car.getCodigoCarrito()%></td>
-                        <td><%=car.getNombreProducto()%></td>
-                        <td><%=car.getDescricionCarrito()%></td>
-                        <td ><img  src="img/axe.png" alt="ERROR"/></td>
-                        <td><%=car.getCantidadCompra()%></td>
-                        <td><%=car.getPrecioUnidad()%></td>
-                        <td><%=car.getDescuentoProducto()%></td>
-                        <td><%=car.getSubTotal()%></td>
-                        <td>
-                            <a href="remove?remove=<%=car.getCodigoCarrito()%>" class="delete_producto"><i class="fa fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    <%
-                        }
-                    %>      
-                    <%
-                    } else {
-                    %>
-                    <tr >
-                        <td colspan="10">
-                            <h3>NO HAY PRODUCTOS EN LA BOLSA</h3>
-                            <img src="https://olsi-trade.ru/local/templates/olsi/img/icon/empty-basket.svg" alt="alt"/>
-                        </td>                   
-                    </tr>
-                    <%
-                        }
-                    %>
+        <br><br><br>
+        <!-- dashboard user-->
+
+        <div class="contenedor_dashboard">
+            <div class="contenedor_dash_1">
+                <div class="datos_usuario_dashboard">
+                    <h1>Datos Usuario</h1>
+                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
+                        <div class="datos_saldo_dash">
+                            <div>
+                                <p>Saldo: $</p>
+                            </div>
+                            <div>
+                                <p><%=SaldoUsuario%></p>
+                            </div>
+                        </div>
+                    </a>    
+                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
+                        <div class="datos_saldo_dash">
+                            <div>
+                                <p>Recargar Saldo</p>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </div>
+                    </a>
 
 
+                    <a href="../session?logout=1" class="saldo_user_dash" id="saldo_user_dash">
+                        <div class="datos_saldo_dash">
+                            <div>
+                                <p>Cerrar Sesion</p>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
-
-                </table>
             </div>
-            <div class="contenedor_carrito_2">
-               
-                <div class="datos_carrito">
-                    <h3>carrito de compras</h3>
-                    <div class="carrito_datos_compras">
-                        <div>
-                            <span>SubTotal:</span>
-                        </div>
-                        <%
-                            Double TotalCarrito = (Double) request.getAttribute("TotalCarrito");
-                        %>
-                        <div>
-                            <span><%=TotalCarrito%></span>
-                        </div>
-                    </div>
-                    <div class="carrito_datos_compras">
-                        <%
-                            String IGV = (String) request.getAttribute("IGV");
-                        %>
-                        <div>
-                            <span>IGV:</span>
-                        </div>
-                        <div>
-                            <span><%=IGV%></span>
-                        </div>
-                    </div>
-                    <div class="carrito_datos_compras">
-                        <div>
-                            <span>Descuento:</span>
-                        </div>
-                        <div>
-                            <%
-                                String Descuento = (String) request.getAttribute("Descuento");
-                            %>
-                            <span><%=Descuento%> %</span>
-                        </div>
-                    </div>
-                    <div class="linea_carrito">
+            <div class="contenedor_dash_2">
+                <h1>Mis Compras</h1>
+                <div>
+                    <table class="table_dashboard">
+                        <tr>
+                            <th>#</th>
+                            <th>Codigo Compra</th>
+                            <th>Codigo Usuario</th>
+                            <th>SubTotal</th>
+                            <th>Precio Total</th>
+                            <th>Fecha Compra</th>
+                            <th>Estado Compra</th>
+                            <th>Accion</th>
+                        </tr>
 
-                    </div>
-                    <div class="carrito_datos_compras">
-                        <div>
-                            <span>Precio Final:</span>
-                        </div>
-                        <div>
-                            <%
-                                String PrecioFinal = (String) request.getAttribute("PrecioFinal");
-                            %>
-                            <span><%=PrecioFinal%></span>
-                        </div>
-                    </div>
-                        <div>
-                            ${MensajeCompra}
-                        </div>
-                    <div class="btn_carrito">
-                        <a href="Comprar">Generar Compra</a>
-                    </div>
-                    <div class="seguir_comprando">
-                        <a href="#">Seguir Comprando</a>
-                    </div>
+                        <%
+                        if (Lista.size() > 0) {
                         
-                </div>                   
+                        %>
+                        <%
+                            int contadorCompras = 0;
+                            for (int i = 0; i < Lista.size(); i++) {
+                                compras compras = Lista.get(i);
+                                contadorCompras++;
+                        %>
+                        <tr>
+                            <td><%=contadorCompras%></td>
+                            <td><%=compras.getCodigoCompra()%></td>
+                            <td><%=compras.getCodigoUsuasrio()%></td>
+                            <td><%=compras.getSubTotal()%></td>
+                            <td><%=compras.getPrecioTotal()%></td>
+                            <td><%=compras.getFechaCompra()%></td>
+                            <td><%=compras.getEstadoCompra()%></td>
+                            <td>
+                                <a href="../usuario/DetallesCompras.jsp?codigoCompra=<%=compras.getCodigoCompra()%>" class="detalles_compras"><i class="fa fa-file-o"></i></a>
+                            </td>
+                        </tr>
+
+                        <%
+                            }
+                        %>
+                        
+                        <%
+                            }else{
+                        %>
+                        <td colspan="8"><h3 style="color: #355157; text-align: center">NO HAY PRODUCTOS REGISTRADOS</h3></td>
+                        <%
+                            }
+                        %>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <%
+        } else {
+        %>
+        <br><br><br><br>
+        <div class="contenedor_error_404">
+            <div class="error_404">
+                <div class="contenedor_error_1">
+                    <img src="../img/404.png" alt="">
+                </div>
+                <div class="contenedor_error_2">
+                    <div>
+                        <h1>OOOPSS!!!! PAGE NO FOUND</h1>
+                    </div>
+                    <div>
+                        <p>
+                            This was a web page for an organization that used to exist. This organization no longer exists
+                            as it has been replaced with a new organization to teach surf kids the values and love of the
+                            ocean. The new site is:
+                        </p>
+                        <a href="index.jsp">Regresar Al Inicio</a>
+                    </div>
+                </div>
             </div>
         </div>
+        <br><br>
 
+        <%
+            }
+        %>
+
+        <br><br><br>
         <!-- LOGIN -->
         <div class="contenedor_ventana_modal" id="ventana_login">
-            <form action="session" method="POST" class="form_login">
+            <form action="../session" method="POST" class="form_login">
                 <div class="contenedor_form_login">
                     <div class="titulo_form">
                         <h1><a href="#" class="titulo_responsive_off">Sistema ventas</a></h1>
@@ -372,7 +384,7 @@
         </div>
 
         <!-- FIN BARRA -->
-        <br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <footer class="footer">
             <div class="titulo_footer">
                 <h1><a href="#" class="titulo_responsive_off">SistemaVentas</a></h1>
@@ -405,11 +417,10 @@
                 </div>
             </div>
         </div>
-        <script src="js/Mensajes-login.js"></script>
-        <script src="js/modal-barra-responsive.js"></script>
-        <script src="js/modal-login-register.js"></script>
+        <script src="../js/Mensajes-login.js"></script>
+        <script src="../js/modal-barra-responsive.js"></script>
+        <script src="../js/modal-login-register.js"></script>
         <script src="https://use.fontawesome.com/87ad7ac135.js"></script>
-
 
     </body>
 </html>

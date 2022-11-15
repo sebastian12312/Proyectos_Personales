@@ -50,12 +50,12 @@
             <div class="contenedor_header">
                 <div class="header_1">
                     <div class="header_titulo">
-                        <h1><a href="#" class="titulo_responsive_off">Sistema ventas ${saldo}</a></h1>
-                        <h1><a href="#" class="titulo_responsive">SV</a></h1>
+                        <h1><a href="index.jsp" class="titulo_responsive_off">Sistema ventas ${saldo}</a></h1>
+                        <h1><a href="index.jsp" class="titulo_responsive">SV</a></h1>
                     </div>
                     <div class="header_opciones">
                         <ul class="opciones_header">
-                            <li><a href="#">Tienda</a></li>
+                            <li><a href="Tienda">Tienda</a></li>
                             <li><a href="carrito">Carrito ${contador}</a></li>
                             <li><a href="#">Contacto</a></li>
                             <li> <a href="#">Colaboradores</a></li>
@@ -67,6 +67,7 @@
                         <a href="#" ><%=NickName%></a>
                         <div class="contenedor_droptown">
                             <a href="#">Saldo:$ <%=SaldoUsuario%></a>
+                            <a href="usuario/MisCompras.jsp">Mis Compras</a>
                             <a href="#">Ajustes</a>
                             <a href="#">Recargar Saldo</a>
                             <a href="session?logout=1">Cerrar sesion</a>
@@ -104,8 +105,8 @@
             <div class="contenedor_header">
                 <div class="header_1">
                     <div class="header_titulo">
-                        <h1><a href="#" class="titulo_responsive_off">Sistema ventas</a></h1>
-                        <h1><a href="#" class="titulo_responsive">SV</a></h1>
+                        <h1><a href="index.jsp" class="titulo_responsive_off">Sistema ventas</a></h1>
+                        <h1><a href="index.jsp" class="titulo_responsive">SV</a></h1>
                     </div>
                     <div class="header_opciones">
                         <ul class="opciones_header">
@@ -132,6 +133,11 @@
         <%
             }
         %>
+         <br><br>
+        <div class="titulo_tienda">
+            <h1 style="text-align: center">Tienda de Producto</h1>
+        </div>
+         <br><br>
         <!-- Tienda -->
         <%
             ArrayList<Producto> Listar = (ArrayList<Producto>) request.getAttribute("ListarProducto");
@@ -178,7 +184,7 @@
                 %>
             </div>
         </div>
-
+            <br><br><br><br><br><br><br><br><br><br><br>
 
         <!-- LOGIN -->
         <div class="contenedor_ventana_modal" id="ventana_login">
