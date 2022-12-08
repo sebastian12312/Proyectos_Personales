@@ -1,0 +1,71 @@
+.titulo_categorias_web{
+    color: black;
+    text-shadow: 0px 0px 5px  black;
+    text-decoration: none;
+    font-size: 45px;
+   display: flex;
+   justify-content: center;
+   margin-top: 20px;
+}
+.contenedor_categorias{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.contenedor_categorias div{
+    margin: 20px;
+    border: 1px solid rgb(167, 167, 167);
+    border-radius: 50%;
+}
+.contenedor_categorias img{
+    border-radius: 50%;
+}
+.contenedor_categorias div:hover{
+    transition: 0.5s;
+    box-shadow: 0px 0px 20px 0px rgb(61, 61, 61);
+}
+/*OFERTA*/
+.cuerpo_oferta{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.titulo_oferta{
+    display: flex;    
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    font-size: 40px;
+    text-shadow: 0px 0px 5px  black;
+}
+.productos_ofertas{
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.contenedor_oferta{
+    border: 1px solid #ddd;
+    margin: 10px;
+}
+.oferta{
+    text-decoration:none ;
+    text-align: center;
+    color: white;
+   
+}
+.contenedor_oferta:hover{
+    box-shadow: 0px 0px 10px 0px rgba(124, 124, 124, 0.867);
+    transition: 0.7s;
+}
+.ver_Oferta{
+    background-color: rgb(80, 80, 80);
+    font-size: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.ver_Oferta:hover{
+    transition: 0.5s;
+    background-color: rgb(121, 121, 121);
+    color: rgb(255, 255, 255);
+}

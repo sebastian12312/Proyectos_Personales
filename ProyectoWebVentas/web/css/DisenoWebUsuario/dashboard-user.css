@@ -1,0 +1,109 @@
+.contenedor_dashboard {
+    display: flex;
+    justify-content: center;
+}
+.MisCompras{
+margin-top: 3%;
+    margin-bottom: 23%;
+    
+}
+.datos_usuario_dashboard {
+    width: 300px;
+    background-color: rgb(203, 203, 203);
+    padding-top: 20px;
+    padding-bottom: 10px;
+    box-shadow: 0px 0px 10px 0px rgb(199, 199, 199);
+    margin-right: 30px;
+}
+
+.datos_usuario_dashboard h1 {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+.ver_details{
+    color: white;
+    font-size: 30px;
+    background-color: #0099cc;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+.ver_details:hover
+{    
+    background-color: #003399;
+    transition: 0.5s;
+}
+
+.return_usuario{
+    color: white;
+    font-size: 30px;
+    background-color: #0099cc;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+.return_usuario:hover
+{    
+    background-color: #003399;
+    transition: 0.5s;
+}
+.datos_saldo_dash {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: rgb(159, 159, 159);
+    padding: 10px 20px;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.datos_saldo_dash:hover {
+    background-color: #ddd;
+}
+
+/*table*/
+.table_dashboard {
+    border-collapse: collapse;
+}
+
+
+.table_dashboard td {
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+}
+
+.table_dashboard th {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    color: white;
+    text-shadow: 0px 0px 10px black;
+    background-color: rgb(255, 180, 19);
+    font-size: 18px;
+}
+
+.contenedor_dash_2 {
+    overflow-y: auto;
+}
+.details_compras{
+    display: flex;
+    justify-content: center;
+    
+}
+.details_compras_usuario{
+    overflow-y: auto;
+}
+/*responsive*/
+@media only screen and (max-width:1000px) {
+    .contenedor_dashboard {
+        display: block;
+    }
+
+    .contenedor_dash_1 {
+        display: flex;
+        justify-content: center;
+
+    }
+}

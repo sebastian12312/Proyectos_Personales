@@ -1,0 +1,72 @@
+.Titulo_Tienda{
+    margin-top: 30px;
+        margin-bottom: 30px;
+}
+.Titulo_Tienda h1{
+    text-align:center;
+}
+.card_tienda {
+    width: 250px;
+    border: 1px solid rgb(241, 241, 241);
+    padding: 10px 20px;
+    box-shadow: 0px 0px 10px 0px rgb(205, 205, 205);
+}
+
+.tienda {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.contenedor_tienda {
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card_tienda {
+    margin: 15px;
+}
+
+.card_tienda img {
+    width: 100%;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 10px 0px rgb(241, 241, 241);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.card_tienda h3 {
+    text-align: center;
+}
+
+.datos_card_tienda {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    background-color: rgb(228, 228, 228);
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px 0px #ddd;
+}
+
+.btn_tienda {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.btn_tienda a {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(0, 183, 255);
+    padding: 5px 20px;
+
+}
+
+.btn_tienda a:hover {
+    background-color: rgb(0, 145, 255);
+    transition: 0.7s;
+}
