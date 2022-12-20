@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/*MODAL*/
+.contenedor_modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    background-color: rgb(210, 209, 209, 0.3);
+    display: none;
+
+}
+
+.AbrirModal {
+    display: flex;
+
+}
+
+.CerrarModal {
+    display: none;
+}
+
+.CerrarModal:hover {
+    transition: 0.5s;
+}
+
+.formulario_login {
+    width: 500px;
+    border: 1px solid #ddd;
+    padding: 30px;
+    background-color: white;
+    animation: AnimacionAbrir 0.5s;
+}
+
+@keyframes AnimacionAbrir {
+    from {
+        top: 300px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0px;
+        opacity: 1;
+    }
+}
+/*formulario*/
+.logo_modal_login {
+    width: 100%;
+    height: 300px;
+    border: 1px solid black;
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background-color: #ddd;
+}
+
+.logo_modal_login::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 600px;
+    background-image: conic-gradient(transparent, transparent, transparent, transparent, red);
+    /* animation: rotar 5s linear infinite;
+    animation-delay: -2.5s; */
+
+}
+
+.logo_modal_login::after {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 600px;
+    background-image: conic-gradient(transparent, transparent, transparent, transparent, blue);
+    /* animation: rotar 5s linear infinite; */
+}
+
+@keyframes rotar {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.datos_login {
+    margin-top: 20px;
+    
+}
+
+.datos_login label {
+    display: block;
+    font-size: 20px;
+    color: rgb(77, 77, 77);
+    ;
+}
+
+.datos_login input {
+    border: none;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+}
+
+.datos_login input:focus {
+    outline: none ;
+    border-color: rgb(128, 128, 128);
+    transition: 0.5s;
+}
+
+.ver_password_login a{
+    position: absolute;
+    margin-top: 9px;
+    margin-left: -25px;
+    cursor: pointer;
+}
+.eye2{
+    display: none;
+}
+/**/
+.datos_login a {
+    text-decoration: none;
+    color: rgb(75, 75, 75);
+    margin-top: 10px;
+
+}
+
+.datos_login a:hover {
+    transition: 0.5s;
+    border-bottom: 1px solid rgb(125, 125, 125);
+
+}
+
+.btn_login {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.btn_login a {
+    text-decoration: none;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgb(221, 89, 0);
+    margin: 10px;
+    cursor: pointer;
+}
+
+.btn_login input {
+    text-decoration: none;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgb(0, 162, 255);
+    margin: 10px;
+    cursor: pointer;
+}
+/*modal  register*/
+.formulario_register{
+    width: 700px;
+    border: 1px solid #ddd;
+    padding: 30px;
+    background-color: white;
+    animation: AnimacionAbrir 0.5s;
+}
+
+.datos_register label{
+    display: block;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.datos_register input:focus{
+    transition: 0.5s;
+    border-bottom: 1px solid rgb(125, 125, 125);
+}
+.datos_register input{
+    border: none;
+    border-bottom: 1px solid #ddd;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px 0px;
+    box-sizing: border-box;
+}
+.datos_register select{
+    border: none;
+    border-bottom: 1px solid #ddd;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    padding: 10px 0px;
+    box-sizing: border-box;
+}
+.btn_modal_register{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.btn_modal_register input{
+    text-decoration: none;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgb(0, 162, 255);
+    margin: 10px;
+    cursor: pointer;
+}
+.btn_modal_register a{
+    text-decoration: none;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgb(221, 89, 0);
+    margin: 10px;
+    cursor: pointer;
+}
+/*barra lateral*/
+.contenedor_barra_lateral{
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    display: flex;
+    z-index: 1;
+    background-color: rgb(210, 209, 209, 0.4);  
+    display: none;
+
+}
+.AbrirModdalLateral{
+    display: flex;
+    animation: AnimacioBarraLateralOpen 0.5s;
+}
+.CerrarModdalLateral{
+   display: none;
+    animation: AnimacioBarraLateralClose 0.5s;
+}
+@keyframes AnimacioBarraLateralClose {
+    from{
+        right: 0;
+        opacity: 1;
+    }to{
+        right: -400px;
+        opacity: 0;
+    }
+}
+@keyframes AnimacioBarraLateralOpen {
+    from{
+        right: -400px;
+        opacity: 0;
+    }to{
+        right: 0;
+        opacity: 1;
+    }
+}
+.barra_lateral_NoUsuario{
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.cerrar_barra_lateral a{
+  display: flex;
+  justify-content: end;
+  margin-right: 10px;
+  margin-top: 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.menu_barra_lateral_NoUsuario a{
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid #ddd;
+    background-color: #ddd;
+    margin-top: 10px;
+    color: rgb(59, 59, 59);
+    box-sizing: border-box;
+    padding: 10px;
+    cursor: pointer;
+}
+.menu_barra_lateral_NoUsuario a:hover{
+    background-color: rgb(85, 85, 85);
+    color: white;
+    transition: 0.5s;
+}
+/*responsive*/
+@media (max-width: 720px) {
+    .formulario_register{
+        width:100%;
+       
+    }
+}
+@media (max-width: 400px) {
+    .btn_login {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+    }
+   
+}

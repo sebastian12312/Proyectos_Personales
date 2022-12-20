@@ -73,11 +73,11 @@ public class AgregarProducto extends HttpServlet {
         carrito = new cart();
         if (ListaCarrito.size() > 0) {
             for (int i = 0; i < ListaCarrito.size(); i++) {
-                if (ListaCarrito.get(i).getCodigoProducto() == codigoProducto) {
+                if (ListaCarrito.get(i).getCodigoProducto().equals(codigoProducto)) {
                     Posicion = i;
                 }
             }
-            if (ListaCarrito.get(Posicion).getCodigoProducto() == codigoProducto) {
+            if (ListaCarrito.get(Posicion).getCodigoProducto().equals(codigoProducto)) {
                 Cantidad = ListaCarrito.get(Posicion).getCantidadProducto() + Cantidad;
                 SubTotal = ListaCarrito.get(Posicion).getPrecioProducto() * Cantidad;
                 ListaCarrito.get(Posicion).setCantidadProducto(Cantidad);
@@ -89,7 +89,6 @@ public class AgregarProducto extends HttpServlet {
                 carrito.setCodigoProducto(producto.getCodigoProducto());
                 carrito.setNombreProducto(producto.getNombreProducto());
                 carrito.setDescripcionProducto(producto.getDescripcionProducto());
-                System.out.println("descripco =" + producto.getDescripcionProducto());
                 carrito.setCantidadProducto(Cantidad);
                 carrito.setPrecioProducto(producto.getPrecioUnidadProducto());                
                 carrito.setDescuentoProducto(producto.getDescuentoProducto());

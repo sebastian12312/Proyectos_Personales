@@ -1,0 +1,7 @@
+@font-face {
+    font-family: RobotoLight;
+    src: url(../fuente/RobotoLight.ttf);
+}
+*{
+    font-family: RobotoLight;
+}

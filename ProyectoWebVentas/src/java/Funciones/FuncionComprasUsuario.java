@@ -12,8 +12,17 @@ import java.util.ArrayList;
 public class FuncionComprasUsuario {
     PreparedStatement ps;
     ResultSet rs;
-   
-    public ArrayList<DetallesCompras> Details (String CodigoUsuario, String CodigoCompra){
+   public int ValidacionCompras (String CodigoUsuario , String CodigoCompra){
+       try {
+              ps = conexionSQLServer.getConexion().prepareStatement("select * from compras where codigo_compra =? and codigo_usuario=?");
+              ps.setString(1, CodigoCompra);
+              ps.setString(2, CodigoUsuario);
+              rs = ps.executeQuery();              
+       } catch (Exception e) {              
+       }                      
+       return 1;
+   }
+    public ArrayList<DetallesCompras> Details ( String CodigoCompra){
       ArrayList<DetallesCompras> ListarDetailsCompras = new ArrayList<>();
         try {   
                 ps = conexionSQLServer.getConexion().prepareStatement("select * from detallesCompras where codigo_compra =?");

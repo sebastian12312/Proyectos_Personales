@@ -162,53 +162,64 @@
         %>
         <!-- dashboard user-->
         <div class="MisCompras details_compras">      
-                <div class="details_compras_usuario">
-                    <h1>Mis Compras</h1>
-                    <div>
-                        <table class="table_dashboard">
-                            <tr>
-                                <th>#</th>
-                                <th>Codigo Compra</th>
-                                <th>Codigo producto</th>
-                                <th>Nombre Producto</th>
-                                <th>Descripcion</th>
-                                <th>Cantidad</th>
-                                <th>Precio Producto</th>
-                                <th>subTotal</th>
-                                <th>Decuento</th>
-                                <th>Accion</th>
-                            </tr>
-                            <%
-                                String CodigoCompra =(String) request.getParameter("codigo");
-                                FuncionComprasUsuario usuario = new FuncionComprasUsuario();
-                                ArrayList<DetallesCompras> detallesCompra = new ArrayList<DetallesCompras>();
-                                detallesCompra = usuario.Details(CodigoUsuario, CodigoCompra);
-                                int contadorListaCompras = 0;
-                                for (int i = 0; i < detallesCompra.size(); i++) {
-                                    DetallesCompras d = detallesCompra.get(i);
-                                    contadorListaCompras++;
-                            %>     
-                            <tr>
-                                <td><%=contadorListaCompras%></td>
-                                <td><%=d.getCodigoCompra()%></td>
-                                <td><%=d.getCodigoProducto()%></td>
-                                <td><%=d.getNombreProducto()%></td>
-                                <td><%=d.getDescripcionProducto()%></td>
-                                <td><%=d.getCantidadCompra()%></td>
-                                <td><%=d.getPrecioCompra()%></td>
-                                <td><%=d.getSubTotalCompraProducto()%></td>
-                                <td><%=d.getDescuentoCompra()%></td>
-                                <td>
-                                    <a href="../usuario/MisCompras.jsp" class="return_usuario"><i class="fa fa-angle-double-left"></i></a>
-                                </td>
-                            </tr>
-                            <%
-                                }
-                            %>
-                        </table>
-                    </div>
+            <div class="details_compras_usuario">
+                <h1>Mis Compras</h1>
+                <div>
+                    <table class="table_dashboard">
+                        <tr>
+                            <th>#</th>
+                            <th>Codigo Compra</th>
+                            <th>Codigo producto</th>
+                            <th>Nombre Producto</th>
+                            <th>Descripcion</th>
+                            <th>Cantidad</th>
+                            <th>Precio Producto</th>
+                            <th>subTotal</th>
+                            <th>Decuento</th>
+                            <th>Accion</th>
+                        </tr>
+                        <%
+                            String CodigoCompra = (String) request.getParameter("codigo");
+
+                            FuncionComprasUsuario usuario = new FuncionComprasUsuario();
+                            int ValidacionCompra = usuario.ValidacionCompras(CodigoUsuario, CodigoCompra);
+                            ArrayList<DetallesCompras> detallesCompra = new ArrayList<DetallesCompras>();
+                            detallesCompra = usuario.Details(CodigoCompra);
+                            int contadorListaCompras = 0;
+                            if (ValidacionCompra == 1) {
+                        %>
+                        <%
+                            for (int i = 0; i < detallesCompra.size(); i++) {
+                                DetallesCompras d = detallesCompra.get(i);
+                                contadorListaCompras++;
+                        %>     
+                        <tr>
+                            <td><%=contadorListaCompras%></td>
+                            <td><%=d.getCodigoCompra()%></td>
+                            <td><%=d.getCodigoProducto()%></td>
+                            <td><%=d.getNombreProducto()%></td>
+                            <td><%=d.getDescripcionProducto()%></td>
+                            <td><%=d.getCantidadCompra()%></td>
+                            <td><%=d.getPrecioCompra()%></td>
+                            <td><%=d.getSubTotalCompraProducto()%></td>
+                            <td><%=d.getDescuentoCompra()%></td>
+                            <td>
+                                <a href="../usuario/MisCompras.jsp" class="return_usuario"><i class="fa fa-angle-double-left"></i></a>
+                            </td>
+                        </tr>
+                        <%
+                            } } else{
+                        %>
+                        <tr>
+                            <td colspan="10">ERROR</td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </table>
                 </div>
             </div>
+        </div>
 
 
         <%

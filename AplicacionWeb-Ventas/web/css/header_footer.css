@@ -1,0 +1,227 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+/*header*/
+.header {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0px 0px 10px 0px #ddd;
+    width: 100%;
+}
+
+/*contenedor_header_1*/
+.contenedor_header_1 {
+    margin-left: 3%;
+    display: flex;
+    gap: 15%;margin-top: auto;
+    margin-bottom: auto;
+}
+
+.titulo_header a {
+    text-decoration: none;
+    color: black;
+}
+
+.menu_header {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.contenedor_menu {
+    display: flex;
+    gap: 20px;
+
+}
+
+.contenedor_menu a {
+    color: black;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.contenedor_menu a:hover {
+    transition: 1.5s;
+    border-bottom: 1px solid black;
+}
+
+/*contenedor_header_2*/
+.contenedor_header_2 {
+    margin-right: 3%;
+}
+
+.header_NoUsuario {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.header_sesionUsuario {
+    display: flex;
+    gap: 20px;
+}
+
+.header_sesionUsuario a {
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.header_sesionUsuario a:nth-child(1) {
+    background-color: rgb(0, 145, 255);
+    color: white;
+    border: 1px solid rgb(0, 145, 255);
+}
+
+.header_sesionUsuario a:nth-child(2) {
+    background-color: rgb(0, 145, 255);
+    color: white;
+    border: 1px solid rgb(0, 145, 255);
+}
+
+.header_sesionUsuario a:hover {
+    background-color: rgb(0, 124, 218);
+    transition: 0.5s;
+}
+.header_sesionUsuario a:nth-child(3) {
+    display: none;
+}
+
+.header_sesionUsuario a:nth-child(1)  li{
+    display: none;
+}
+.header_sesionUsuario a:nth-child(2)  li{
+    display: none;
+}
+
+.contenedor_header_2{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.header_datosUsuario{
+    display: flex;
+    gap: 10px;
+}
+.header_datosUsuario a{
+    color: white;
+    text-decoration: none;  
+    
+}
+#NombreUsuario{
+    cursor: pointer;
+    width: 170px; 
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+.header_datosUsuario a:nth-child(1){
+    border: 1px solid rgb(0, 145, 255);
+    padding:  10px;
+    background-color:   #11a0ff;
+    
+}
+.header_datosUsuario a:nth-child(2){
+    display: none;
+    font-size: 20px;
+    border: 1px solid rgb(0, 145, 255);
+    background-color:  rgb(0, 145, 255);
+    padding: 10px;
+}
+
+.header_menu_droptown{
+    position: absolute;
+    margin-top:43px;
+    z-index: 1;
+    background-color: #11a0ff;
+    border: 1px solid #0099ff;
+    padding: 10px 10px;
+    width: 170px; 
+    display: none;  
+  
+}
+.header_menu_droptown a{
+    display: block;    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-decoration:none ;
+    color: white;  
+    padding: 10px 20px;  
+}
+.menu_droptown a:nth-child(1) {
+    border: 1px solid #0084ff;
+    background-color: #0084ff;
+}
+.menu_droptown a:nth-child(1):hover {
+    border: 1px solid #0084ff;
+    background-color: #003362;
+    transition: 0.5s;
+}
+.menu_droptown li:nth-child(4) a{
+    border: 1px solid red;
+    background-color: red;
+}
+.menu_droptown li:nth-child(4) a:hover{
+    border: 1px solid rgb(197, 0, 0);
+    background-color: rgb(197, 0, 0);
+}
+.header_droptown:hover .header_menu_droptown{
+    display: block;
+}
+/**/
+@media (max-width: 800px) {
+    .contenedor_menu{
+        display: none;
+    }
+    .header_sesionUsuario a:nth-child(3) {
+        display: inline-block;
+        background-color: rgb(0, 145, 255);
+        color: white;
+        border: 1px solid rgb(0, 145, 255);
+    }
+    .header_datosUsuario a:nth-child(2){
+        display: block;
+    }
+
+}
+@media (max-width: 530px) {
+    .header_sesionUsuario a:nth-child(1)  li{
+        display: block;
+    }
+    .header_sesionUsuario a:nth-child(2)  li{
+        display: block;
+    }
+    .header_sesionUsuario a:nth-child(1)  span{
+        display: none;
+    }
+    .header_sesionUsuario a:nth-child(2)  span{
+        display: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .header{
+        display: block;     
+    }
+    .contenedor_header_1{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0%;
+    }
+    .contenedor_header_2{
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}

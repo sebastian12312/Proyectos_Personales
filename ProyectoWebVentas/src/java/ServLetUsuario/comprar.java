@@ -16,11 +16,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import clases.*;
 import Funciones.FuncionSession;
+import java.util.Random;
 @WebServlet(name = "comprar", urlPatterns = {"/comprar"})
 public class comprar extends HttpServlet {
 
     DatosUsuario datosUser = new DatosUsuario();
     FuncionSession funcionsesion = new FuncionSession();
+    public String GenCod(){
+        Random random = new Random(); 
+        char LETRA1 = (char) (random.nextInt(26) + 'A' );            
+        char LETRA2 = (char) (random.nextInt(26) + 'A' );     
+        char LETRA3 = (char) (random.nextInt(26) + 'A' ); 
+        String setOfCharacters = "1234567890";
+        int NUMERO = random.nextInt(setOfCharacters.length()+11);
+        char randomChar = setOfCharacters.charAt(NUMERO);
+        char randomChar2 = setOfCharacters.charAt(NUMERO);
+        String letra = "COD"+LETRA1+randomChar+LETRA3+randomChar2+LETRA2;          
+        return letra;
+    }
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -49,8 +62,7 @@ public class comprar extends HttpServlet {
                             if (Respuesta2 == 1) {
                                 double NuevoSaldo = datosUser.getSaldoUsuario() - PrecioFinalCarrito;
                                 int RespuestaSaldo = funcionsesion.ActualizarSaldo(CodigoUsuario, NuevoSaldo);
-                                if (RespuestaSaldo == 1) {
-                                    
+                                if (RespuestaSaldo == 1) {                                    
                                     if (datosUser.getSaldoUsuario() > 0) {
                                         MensajeCompra = "Compra Exitosa";
                                         request.setAttribute("MensajeCompra",MensajeCompra);    
@@ -59,13 +71,13 @@ public class comprar extends HttpServlet {
                                     funcionsesion.ActualizarSaldo(CodigoUsuario, NuevoSaldo);
                                     MensajeCompra ="Error Intente Mas Tarde";
                                     request.setAttribute("MensajeCompra",MensajeCompra);    
-                                    request.getRequestDispatcher("/carrito.jsp").forward(request, response);
+                                    request.getRequestDispatcher("carrito.jsp").forward(request, response);
                                     }
                                     
                                 }else{
                                 MensajeCompra ="Error Intente Mas Tarde";
                                 request.setAttribute("MensajeCompra",MensajeCompra);    
-                                request.getRequestDispatcher("/carrito.jsp").forward(request, response);
+                                request.getRequestDispatcher("carrito.jsp").forward(request, response);
                                 }
                                 
                             }else{
