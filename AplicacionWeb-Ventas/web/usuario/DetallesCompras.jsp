@@ -3,9 +3,9 @@
     Created on : Dec 18, 2022, 7:59:19 PM
     Author     : sebastian
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="clases.cart"%>
+<%@page import="clases.DetalleComprasUsuario"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="clases.ComprasUsuario"%>
 <%@page session="true"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,42 +17,40 @@
         <title>Diseño Web</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- fuente -->
-        <link rel="stylesheet" href="css/fuente.css">
+        <link rel="stylesheet" href="../css/fuente.css">
         <!-- header y footer -->
-        <link rel="stylesheet" href="css/header_footer.css">
+        <link rel="stylesheet" href="../css/header_footer.css">
         <!-- Modal  -->
-        <link rel="stylesheet" href="css/modalUsuario.css">
+        <link rel="stylesheet" href="../css/modalUsuario.css">
         <!-- slider 0-->
-        <link rel="stylesheet" href="css/slider.css">
+        <link rel="stylesheet" href="../css/slider.css">
         <!--  -->
-        <link rel="stylesheet" href="css/index.css">
-
-        <link rel="stylesheet" href="css/carrito.css">
+        <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/usuario.css">
+        <link rel="stylesheet" href="../css/GenerarFactura.css">
     </head>
     <%
         String usuario = (String) session.getAttribute("usuario");
         String CodigoUsuario = (String) session.getAttribute("CodigoUsuario");
-        session.setAttribute("CodigoUsuario", CodigoUsuario);
-        session.setAttribute("CodigoUsuario", CodigoUsuario);
         Double SaldoUsuario = (Double) session.getAttribute("SaldoUsuario");
-
     %>
     <body>
         <header class="header" id="header">
             <div class="contenedor_header_1">
                 <div class="titulo_header">
-                    <h1><a href="index.jsp">DisenoWeb</a></h1>
+                    <h1><a href="../index.jsp">DisenoWeb</a></h1>
                 </div>
                 <div class="menu_header">
                     <ul class="contenedor_menu">
-                        <li><a id="" href="Tienda">Tienda</a></li>
-                        <li><a id="" data-tienda="">contacto</a></li>
+                        <li><a id="" href="../Tienda">Tienda</a></li>
+                        <li><a id="abc" data-tienda="tienda">contacto</a></li>
                         <li><a class="">Nosotros</a></li>
                     </ul>
                 </div>
             </div>
             <div class="contenedor_header_2">
-                <%                    if (CodigoUsuario != null) {
+                <%
+                    if (CodigoUsuario != null) {
 
                 %>
                 <div class="header_Usuario">
@@ -63,8 +61,8 @@
                         </a>
                         <div class="header_menu_droptown">
                             <ul class="menu_droptown">
-                                <li><a id="dropMisCompras" href="MisCompras">Mis Compras</a></li>
-                                <li><a id="dropTienda" href="Tienda">Tienda</a></li>
+                                <li><a id="dropMisCompras" href="../MisCompras">Mis Compras</a></li>
+                                <li><a id="dropTienda" href="../Tienda">Tienda</a></li>
                                 <li><a id="dropMiSaldo">Saldo: $ <%=SaldoUsuario%></a></li>
                                 <li><a id="dropCerrarSesion" href="session?cerrar=true">cerrar sesion</a></li>
                             </ul>
@@ -74,6 +72,7 @@
                 <%
                 } else {
                 %>   
+
 
 
                 <div class="header_NoUsuario">
@@ -93,92 +92,121 @@
 
             </div>
         </header>
+        <%
+            if (CodigoUsuario != null) {
+        %>
+        <br><br><br>  
+        <div class="contenedor_factura">
+            <div class="header_factura">
+                <div class="titulo_factura">
+                    <h1>Page factura</h1>
+                </div>
+                <div class="datos_empresa_factura">
+                    <p>www.google.com</p>
+                    <p>E-mail: abc@gmail.com</p>
+                    <p>Telefono: 960722532</p>
+                </div>
+                <div class="datos2_empresa_factura">
+                    <p>www.google.com</p>
+                    <p>E-mail: abc@gmail.com</p>
+                    <p>Telefono: 960722532</p>
+                </div>
+            </div>
+            <div class="cuerpo_factura">
+                <div class="tipo_comprobante">
+                    <a href="#">FACTURA/BOLETA</a>
+                </div>
 
-        <div class="contenedor_carrito_compras">
-            <section class="seccion_carrito_compras">
-                <div class="carrito_compras">               
-                    <table class="table_carrito_compras">
+                <div class="datos_cliente_comprobante">
+                    <div class="cliente_comprobante">
+                        <p>Nombre Cliente:</p>
+                        <p>Correo Cliente:</p>
+                        <p>Telefono cliente:</p>
+                        <p>ID cliente:</p>
+                    </div>
+                    <div class="datos_cliente">
+                        <p>${NombreUsuario} ${ApellidoUsuario}</p>
+                        <p>${CorreoUsuario}</p>
+                        <p>${TelefonoUsuario}</p>
+                        <p>${CodigoUsuario}</p>
+                    </div>
+                </div>
+                <div class="table_datos_detallesCompra">
+                    <table class="table_detallesCompras">
+                        <tr>
+                            <td colspan="8">
+                                <h1>Productos comprasdos</h1>
+                            </td>
+                        </tr>
                         <tr>
                             <td>#</td>
-                            <td>imagen</td>
-                            <td>Descripcion</td>
-                            <td>Precio</td>
+                            <td>Codigo Producto</td>
+                            <td>Nombre Producto</td>
+                            <td>Descripcion Producto</td>
                             <td>Cantidad</td>
-                            <td>Precio Total</td>
-                            <td>Elimar</td>
+                            <td>Precio</td>
+                            <td>SubTotal</td>
+                            <td>Descuento</td>
                         </tr>
                         <%
-                            String MensajeConfirmacion = (String) session.getAttribute("MensajeConfirmacion");
-                            if (MensajeConfirmacion.equals("aceptado")) {
-
-                                int ContadorCarrito = 0;
-                                ArrayList<cart> carritoCompras = (ArrayList<cart>) session.getAttribute("CarritoDeComprasBuy");
-                                for (int i = 0; i < carritoCompras.size(); i++) {
-                                    cart c = carritoCompras.get(i);
-                                    ContadorCarrito++;
+                            int contadorDetalles = 0;
+                        ArrayList<DetalleComprasUsuario> detallesCompras = (ArrayList<DetalleComprasUsuario>) session.getAttribute("DetallesCompras");
+                        for (int i = 0; i < detallesCompras.size(); i++) {
+                                DetalleComprasUsuario d = detallesCompras.get(i);
+                           contadorDetalles++;
                         %>
-                        <tr>                              
-                            <td><%=ContadorCarrito%></td>
-                            <td><img src="img/axe2.png" alt=""></td>
-                            <td><%=c.getNombre_Producto_Cart()%></td>
-                            <td>$ <%=c.getPrecio_Producto_cart()%></td>
-                            <td><%=c.getCantidad_Producto_Cart()%></td>
-                            <td>$ <%=c.getSubTotal_Producto_Cart()%></td>
-                            <td><a href="#"  class="delete_producto_carrito"><li class="fa fa-trash"></li></a></td>
+                        <tr>
+                            <td><%=contadorDetalles%></td>
+                            <td><%=d.getCodigoProducto()%></td>
+                            <td><%=d.getNombreProducto()%></td>
+                            <td><%=d.getDescripcionProducto()%></td>
+                            <td><%=d.getCantidadCompra()%></td>
+                            <td><%=d.getPrecioProducto()%></td>
+                            <td><%=d.getSubTotalDetalles()%></td>
+                            <td><%=d.getDescuentoDetalle()%></td>
                         </tr>
                         <%
                             }
-                        } else {
                         %>
-                        <tr>
-                            <td colspan="9">
-                                <h1>NO HAY PRODUCTOS EN EL CARRITO DE COMPRAS</h1>
-                                <img src="https://cdn-icons-png.flaticon.com/512/3082/3082011.png" alt="alt"/>
-                            </td>
-                        </tr>
-                        <%}%>
                     </table>
                 </div>
-            </section>
-            <section class="seccion_datos_carritos">
-                <div class="datos_carrito">
-                    <div class="titulo_datos_carrito">
-                        <span>carrito de compras: ( ${CantidadProductosCompras} )item</span>
-                    </div>
-                    <div class="datos_carrito_compras">
-                        <p>SubTotal</p>
-                        <p>$ ${PrecioFinal}</p>
-                    </div>
-                    <div class="datos_carrito_compras">
-                        <p>IGV</p>
-                        <p>$ ${IGVCarrito}</p>
-                    </div>
-                    <div class="datos_carrito_compras">
-                        <p>Descuento</p>
-                        <p>$ ${PrecioFinal}</p>
-                    </div>
-                    <div class="datos_carrito_compras border_top_datos_carrito">
-                        <p>Precio Final</p>
-                        <p>$ ${PrecioFinal}</p>
-                    </div>
-                    <div class="MensajeErrorCompras">
-                        <p style="color: red">
-                            ${MensajeError}
-                        </p>
-                    </div>
-                    <div class="btn_carrito_compras">
-                        <a href="Tienda"><li class="fa fa-plus"></li> seguir comprando</a>
-                        <a href="comprar"><li class="fa fa-check"></li> comprar</a>
-                        <a href=""><li class="fa fa-pencil-square-o"></li> generar compra</a>
-                    </div>
-                   
+            </div>
+            <br>
+            <div class="footer_factura">
+                <div class="table_datos_factura">
+                    <table class="table_footer_factura">
+                        <tr>
+                            <td>Codigo</td>
+                            <td>Fecha Compra</td>
+                            <td>SubTotal</td>
+                            <td>IGV</td>
+                            <td>Descuento</td>
+                            <td>Total a Pagar</td>
+                        </tr>
+                        <tr>
+                            <td>${codigoCompraComprobante}</td>
+                            <td>${fechaCompra}</td>
+                            <td>${SubTotalCompra}</td>
+                            <td>${IGVcompras}</td>
+                            <td>${DescuentoCompras}</td>
+                            <td>${TotalAPagarComprobante}</td>
+                        </tr>
+                    </table>
                 </div>
-            </section>
-        </div>
+            </div>
 
+        </div>
+        <div class="btn_comprobante">
+            <a href="#">DESCARGAR COMPROBANTE</a>
+            <a href="../MisCompras">regresar</a>
+        </div>
+        <%
+            } else {
+                out.print("error");
+            }
+        %>                
 
         <!-- others -->
-
         <!-- barralateral no usuario -->
         <div class="contenedor_barra_lateral" id="contenedor_barra_lateral_NoUsuario">
             <div class="barra_lateral_NoUsuario">
@@ -197,7 +225,7 @@
         </div>
         <!-- modal login -->
         <div class="contenedor_modal" id="contenedor_modal_login">
-            <form action="session" method="post" class="formulario_login">
+            <form action="../session" method="post" class="formulario_login">
                 <div class="logo_modal_login">
                     <a></a>
                 </div>
@@ -227,49 +255,55 @@
         </div>
 
         <div class="contenedor_modal" id="contenedor_modal_register">
-            <form action="" class="formulario_register">
+            <form action="../ResgistrarUsuario" method="post" class="formulario_register">
                 <h1>REGISTRATE</h1>
                 <div class="contenedor_datos_register">
                     <div class="datos_register">
                         <label for="">usuario*:</label>
-                        <input type="text">
+                        <input type="text" name="usuario">
                     </div>
                     <div class="datos_register">
                         <label for="">E-mail*:</label>
-                        <input type="text">
+                        <input type="text" name="email">
                     </div>
                 </div>
                 <div class="contenedor_datos_register">
                     <div class="datos_register">
                         <label for="">Nombre*:</label>
-                        <input type="text">
+                        <input type="text" name="nombre">
                     </div>
                     <div class="datos_register">
                         <label for="">Apellido*:</label>
-                        <input type="text">
+                        <input type="text" name="apellido">
                     </div>
                 </div>
                 <div class="contenedor_datos_register">
                     <div class="datos_register">
                         <label for="">contrasena*:</label>
-                        <input type="text">
+                        <input type="text" name="password1">
                     </div>
                     <div class="datos_register">
                         <label for="">Repetia su contrasena*:</label>
-                        <input type="text">
+                        <input type="text" name="password2">
+                    </div>
+                </div>
+                <div class="contenedor_datos_register">
+                    <div class="datos_register">
+                        <label for="">Telefono*:</label>
+                        <input type="text" name="Telefono">
                     </div>
                 </div>
                 <div class="contenedor_datos_register">
                     <div class="datos_register">
                         <label for="">Genero*:</label>
-                        <select name="" id="">
+                        <select name="" id="" name="genero">
                             <option value="MASCULINO">MASCULINO</option>
                             <option value="FEMENINO">FEMENINO</option>
                         </select>
                     </div>
                     <div class="datos_register">
                         <label for="">Fecha de Nacimiento*:</label>
-                        <input type="date">
+                        <input type="date" name="fechaNacimiento">
                     </div>
                 </div>
                 <div class="btn_modal_register">
@@ -280,9 +314,9 @@
         </div>
 
 
-        <script src="js/header.js"></script>
-        <script src="js/modal.js"></script>
-        <script src="js/slider.js"></script>
+        <script src="../js/header.js"></script>
+        <script src="../js/modal.js"></script>
+        <script src="../js/slider.js"></script>
     </body>
 
 </html>

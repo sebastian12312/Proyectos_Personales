@@ -1,0 +1,132 @@
+*{
+    padding: 0;
+    margin: 0;    
+}
+.contenedor_factura{
+    border: 1px solid black;
+    max-width: 1500px;    
+    margin-left: auto;
+    margin-right: auto;
+}
+.header_factura{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom:3px solid rgb(92, 92, 92) ;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 20px 20px;
+    box-sizing: border-box;        
+}
+.titulo_factura{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.datos_empresa_factura , .datos2_empresa_factura p{
+    font-size: 22px;
+}
+/**/
+.cuerpo_factura{
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 40px;
+}
+.tipo_comprobante a{
+    text-decoration:none ;
+    color: black;
+    font-size: 30px;    
+}
+/**/
+.datos_cliente_comprobante{
+    margin-top: 20px;
+    display: flex;
+    gap: 60px;
+    box-sizing: border-box;
+  
+}
+.cliente_comprobante p{
+    font-weight: bold;
+    font-size: 22px;
+}
+.datos_cliente{
+    font-size: 22px;
+}
+.datos_cliente_comprobante p{        
+    margin-bottom: 10px;
+   
+}
+/**/
+.footer_factura{
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.table_detallesCompras{
+    border: 1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.table_datos_detallesCompra{
+    overflow-y: auto;
+}
+.table_detallesCompras td{
+    border: 1px solid #ddd;
+    padding: 10px;
+    
+}
+.table_detallesCompras tr{
+    border: 1px solid #ddd;
+    padding: 10px;
+    
+}
+
+
+.table_footer_factura{
+  
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+.table_footer_factura
+tr:nth-child(1){
+    border-bottom:1px solid rgb(198, 198, 198);
+
+}
+.table_footer_factura td{
+    padding: 10px;
+}
+
+/**/
+.btn_comprobante{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.btn_comprobante a{
+    text-decoration: none;
+    margin: 20px;
+    color: white;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    font-size: 22px;
+    border-radius: 4px;
+}
+.table_datos_factura{
+    overflow-y: auto;
+}
+.btn_comprobante a:nth-child(1){
+background-color: green;
+}
+.btn_comprobante a:nth-child(2){
+background-color: rgb(0, 195, 255);
+}
+.btn_comprobante a:nth-child(1):hover{
+background-color: rgb(0, 74, 0);
+transition: 0.5s;
+}
+.btn_comprobante a:nth-child(2):hover{
+background-color: rgb(0, 81, 106);
+transition: 0.5s;
+}

@@ -44,7 +44,7 @@ public class ResgistrarUsuario extends HttpServlet {
         FuncionSession funcionSesion = new FuncionSession();
         Generadores generador = new Generadores();
         String CodigoUsuario = generador.GeneradorDeCodigoUsuario();
-        System.out.println("codigo" + CodigoUsuario);
+
         String usuario = request.getParameter("usuario");
         String email = request.getParameter("email");
         String nombre = request.getParameter("nombre");
@@ -65,6 +65,7 @@ public class ResgistrarUsuario extends HttpServlet {
 //         
 //        }
         response.sendRedirect("index.jsp");
+        
     }
 
     /**

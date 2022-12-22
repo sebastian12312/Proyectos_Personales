@@ -13,7 +13,7 @@ import java.sql.DriverManager;
  */
 public class conexionSQLServer {
      public static Connection getConexion(){
-        String url="jdbc:sqlserver://localhost:1433;databaseName=ProyectoVentas;user=sa;password=12345"; //Conexion URL
+        String url="jdbc:sqlserver://localhost:1433;databaseName=AplicacionWebVentas;user=sa;password=12345"; //Conexion URL
         Connection con = null ;
         try { 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); //CONEXION AL DRIVER

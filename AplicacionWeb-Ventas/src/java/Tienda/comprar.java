@@ -49,9 +49,10 @@ public class comprar extends HttpServlet {
                 String Estado = "CANCELADO";
                 String FechaCompra = generador.FechaBD();
                 String CodigoCompra = generador.GeneradorDeCodigo();
-                double SaldoUsuario = funcionSesion.BuscarSaldoUsuario(CodigoUsuario);               
+                double SaldoUsuario = funcionSesion.BuscarSaldoUsuario(CodigoUsuario);
+                double DescuentoCompra = 0.10 * PrecioFinal;
                 if (SaldoUsuario >= PrecioFinal) {                            
-                    int respuesta = funcionTienda.RegistrarCompra(CodigoCompra, CodigoUsuario, PrecioFinal, PrecioFinal, FechaCompra, Estado);
+                    int respuesta = funcionTienda.RegistrarCompra(CodigoCompra, CodigoUsuario, PrecioFinal,DescuentoCompra,IGVCarrito, DescuentoCompra, FechaCompra, Estado);
                     double NuevoSaldo = SaldoUsuario - PrecioFinal;
                     int respuestaSaldo = funcionSesion.ActualizarSaldo(CodigoUsuario, NuevoSaldo);
                     if (respuesta == 1) {

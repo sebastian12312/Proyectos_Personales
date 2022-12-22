@@ -69,26 +69,35 @@ public class session extends HttpServlet {
         HttpSession session = request.getSession();
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
-        user = funcionSesion.Usuario(usuario, password);       
+        user = funcionSesion.Usuario(usuario, password); 
+        String MensajeSession = "";
+                
         if (user.getCorreoUsuario() != null) {
             if (user.getEstadoUsuario().equals("ACTIVO")) {                
                 if (user.getTipoUsuario().equals("USUARIO")) {
                    session.setAttribute("usuario", user.getNickNameUsuario());
                    session.setAttribute("CodigoUsuario", user.getCodigoUsuario());
                    session.setAttribute("SaldoUsuario", user.getSaldoUsuario());
+                   //
+                   session.setAttribute("NombreUsuario", user.getNombreUsuario());
+                   session.setAttribute("ApellidoUsuario", user.getApellidoUsuario());
+                   session.setAttribute("CorreoUsuario", user.getCorreoUsuario());
+                   session.setAttribute("TelefonoUsuario", user.getTelefonoUsuario());
                    session.setMaxInactiveInterval(500); 
-                   response.sendRedirect("index.jsp");
+                   
                 }else if(user.getTipoUsuario().equals("ADMINISTRADOR")){
                 
                 }
             }else{
-            
+                MensajeSession = "USUARIO SUSPENDIDO";
+                session.setAttribute("MensajeSession", MensajeSession);                                                
             }
       
         }else{
-        
+            MensajeSession = "usuario o contrasena incorrecto!";
+            session.setAttribute("MensajeSession", MensajeSession);
         }
-       
+        response.sendRedirect("index.jsp");
     }
 
     /**

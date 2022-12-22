@@ -3,9 +3,8 @@
     Created on : Dec 18, 2022, 7:59:19 PM
     Author     : sebastian
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="clases.cart"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="clases.ComprasUsuario"%>
 <%@page session="true"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,42 +16,39 @@
         <title>Diseño Web</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- fuente -->
-        <link rel="stylesheet" href="css/fuente.css">
+        <link rel="stylesheet" href="../css/fuente.css">
         <!-- header y footer -->
-        <link rel="stylesheet" href="css/header_footer.css">
+        <link rel="stylesheet" href="../css/header_footer.css">
         <!-- Modal  -->
-        <link rel="stylesheet" href="css/modalUsuario.css">
+        <link rel="stylesheet" href="../css/modalUsuario.css">
         <!-- slider 0-->
-        <link rel="stylesheet" href="css/slider.css">
+        <link rel="stylesheet" href="../css/slider.css">
         <!--  -->
-        <link rel="stylesheet" href="css/index.css">
-
-        <link rel="stylesheet" href="css/carrito.css">
+        <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/usuario.css">
     </head>
     <%
         String usuario = (String) session.getAttribute("usuario");
         String CodigoUsuario = (String) session.getAttribute("CodigoUsuario");
-        session.setAttribute("CodigoUsuario", CodigoUsuario);
-        session.setAttribute("CodigoUsuario", CodigoUsuario);
         Double SaldoUsuario = (Double) session.getAttribute("SaldoUsuario");
-
     %>
     <body>
         <header class="header" id="header">
             <div class="contenedor_header_1">
                 <div class="titulo_header">
-                    <h1><a href="index.jsp">DisenoWeb</a></h1>
+                    <h1><a href="../index.jsp">DisenoWeb</a></h1>
                 </div>
                 <div class="menu_header">
                     <ul class="contenedor_menu">
-                        <li><a id="" href="Tienda">Tienda</a></li>
-                        <li><a id="" data-tienda="">contacto</a></li>
+                        <li><a id="" href="../Tienda">Tienda</a></li>
+                        <li><a id="abc" data-tienda="tienda">contacto</a></li>
                         <li><a class="">Nosotros</a></li>
                     </ul>
                 </div>
             </div>
             <div class="contenedor_header_2">
-                <%                    if (CodigoUsuario != null) {
+                <%
+                    if (CodigoUsuario != null) {
 
                 %>
                 <div class="header_Usuario">
@@ -63,8 +59,8 @@
                         </a>
                         <div class="header_menu_droptown">
                             <ul class="menu_droptown">
-                                <li><a id="dropMisCompras" href="MisCompras">Mis Compras</a></li>
-                                <li><a id="dropTienda" href="Tienda">Tienda</a></li>
+                                <li><a id="dropMisCompras" href="../MisCompras">Mis Compras</a></li>
+                                <li><a id="dropTienda" href="../Tienda">Tienda</a></li>
                                 <li><a id="dropMiSaldo">Saldo: $ <%=SaldoUsuario%></a></li>
                                 <li><a id="dropCerrarSesion" href="session?cerrar=true">cerrar sesion</a></li>
                             </ul>
@@ -74,6 +70,7 @@
                 <%
                 } else {
                 %>   
+
 
 
                 <div class="header_NoUsuario">
@@ -93,92 +90,102 @@
 
             </div>
         </header>
+        <%
+            if (CodigoUsuario != null) {
+        %>
+        <div class="contenedor_dashboard">
+            <div class="contenedor_dash_1">
+                <div class="datos_usuario_dashboard">
+                    <h1>Datos Usuario</h1>
+                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
+                        <div class="datos_saldo_dash">
+                            <div>
+                                <p>Saldo: $</p>
+                            </div>
+                            <div>
+                                <p><%=SaldoUsuario%></p>
+                            </div>
+                        </div>
+                    </a>
 
-        <div class="contenedor_carrito_compras">
-            <section class="seccion_carrito_compras">
-                <div class="carrito_compras">               
-                    <table class="table_carrito_compras">
+                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
+                        <div class="datos_saldo_dash">
+                            <div>
+                                <p>Recargar Saldo</p>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </div>
+                    </a>
+
+
+                    <a href="#" class="saldo_user_dash" id="saldo_user_dash">
+                        <div class="datos_saldo_dash">
+                            <div>
+                                <p>Cerrar Sesion</p>
+                            </div>
+                            <div>
+                                <p></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div class="contenedor_dash_2">
+                <h1>Mis Compras</h1>
+                <div>
+                    <table class="table_dashboard">
                         <tr>
-                            <td>#</td>
-                            <td>imagen</td>
-                            <td>Descripcion</td>
-                            <td>Precio</td>
-                            <td>Cantidad</td>
-                            <td>Precio Total</td>
-                            <td>Elimar</td>
+                            <th>#</th>
+                            <th>Codigo Compra</th>
+                            <th>Codigo Usuario</th>
+                            <th>SubTotal</th>
+                            <th>Descuento</th>
+                            <th>IGV compra</th>
+                            <th>Precio Compra</th>
+                            <th>Fecha Compra</th>
+                            <th>Estaod Compra</th>
+                            <th>Accion</th>
                         </tr>
                         <%
-                            String MensajeConfirmacion = (String) session.getAttribute("MensajeConfirmacion");
-                            if (MensajeConfirmacion.equals("aceptado")) {
+                            ArrayList<ComprasUsuario> compras = (ArrayList<ComprasUsuario>) session.getAttribute("ListaCompras");
+                            int contadorCompras = 0;
 
-                                int ContadorCarrito = 0;
-                                ArrayList<cart> carritoCompras = (ArrayList<cart>) session.getAttribute("CarritoDeComprasBuy");
-                                for (int i = 0; i < carritoCompras.size(); i++) {
-                                    cart c = carritoCompras.get(i);
-                                    ContadorCarrito++;
+                            for (int i = 0; i < compras.size(); i++) {
+                                ComprasUsuario c = compras.get(i);
+                                contadorCompras++;
                         %>
-                        <tr>                              
-                            <td><%=ContadorCarrito%></td>
-                            <td><img src="img/axe2.png" alt=""></td>
-                            <td><%=c.getNombre_Producto_Cart()%></td>
-                            <td>$ <%=c.getPrecio_Producto_cart()%></td>
-                            <td><%=c.getCantidad_Producto_Cart()%></td>
-                            <td>$ <%=c.getSubTotal_Producto_Cart()%></td>
-                            <td><a href="#"  class="delete_producto_carrito"><li class="fa fa-trash"></li></a></td>
+                        <tr>
+                            <td><%=contadorCompras%></td>
+                            <td><%=c.getCodigoCompra()%></td>
+                            <td><%=c.getCodigoUsuario()%></td>
+                            <td><%=c.getSubTotal()%></td>
+                            <td><%=c.getDescuentoCompra()%></td>
+                            <td><%=c.getIGVCompra()%></td>
+                            <td><%=c.getPrecioFInal()%></td>
+                            <td><%=c.getFechaCompra()%></td>
+                            <td><%=c.getEstadoCompra()%></td>
+                            <td>
+                                <a href="../DetallesCompras?codigoCompra=<%=c.getCodigoCompra()%>" class="delete_producto"><i class="fa fa-edit"></i></a>
+                            </td>
                         </tr>
                         <%
                             }
-                        } else {
                         %>
-                        <tr>
-                            <td colspan="9">
-                                <h1>NO HAY PRODUCTOS EN EL CARRITO DE COMPRAS</h1>
-                                <img src="https://cdn-icons-png.flaticon.com/512/3082/3082011.png" alt="alt"/>
-                            </td>
-                        </tr>
-                        <%}%>
                     </table>
                 </div>
-            </section>
-            <section class="seccion_datos_carritos">
-                <div class="datos_carrito">
-                    <div class="titulo_datos_carrito">
-                        <span>carrito de compras: ( ${CantidadProductosCompras} )item</span>
-                    </div>
-                    <div class="datos_carrito_compras">
-                        <p>SubTotal</p>
-                        <p>$ ${PrecioFinal}</p>
-                    </div>
-                    <div class="datos_carrito_compras">
-                        <p>IGV</p>
-                        <p>$ ${IGVCarrito}</p>
-                    </div>
-                    <div class="datos_carrito_compras">
-                        <p>Descuento</p>
-                        <p>$ ${PrecioFinal}</p>
-                    </div>
-                    <div class="datos_carrito_compras border_top_datos_carrito">
-                        <p>Precio Final</p>
-                        <p>$ ${PrecioFinal}</p>
-                    </div>
-                    <div class="MensajeErrorCompras">
-                        <p style="color: red">
-                            ${MensajeError}
-                        </p>
-                    </div>
-                    <div class="btn_carrito_compras">
-                        <a href="Tienda"><li class="fa fa-plus"></li> seguir comprando</a>
-                        <a href="comprar"><li class="fa fa-check"></li> comprar</a>
-                        <a href=""><li class="fa fa-pencil-square-o"></li> generar compra</a>
-                    </div>
-                   
-                </div>
-            </section>
-        </div>
+            </div>
 
+        </div>
+        <%
+            } else {
+                out.print("error");
+            }
+        %>                
 
         <!-- others -->
-
         <!-- barralateral no usuario -->
         <div class="contenedor_barra_lateral" id="contenedor_barra_lateral_NoUsuario">
             <div class="barra_lateral_NoUsuario">
@@ -197,7 +204,7 @@
         </div>
         <!-- modal login -->
         <div class="contenedor_modal" id="contenedor_modal_login">
-            <form action="session" method="post" class="formulario_login">
+            <form action="../session" method="post" class="formulario_login">
                 <div class="logo_modal_login">
                     <a></a>
                 </div>
@@ -227,49 +234,55 @@
         </div>
 
         <div class="contenedor_modal" id="contenedor_modal_register">
-            <form action="" class="formulario_register">
+            <form action="../ResgistrarUsuario" method="post" class="formulario_register">
                 <h1>REGISTRATE</h1>
                 <div class="contenedor_datos_register">
                     <div class="datos_register">
                         <label for="">usuario*:</label>
-                        <input type="text">
+                        <input type="text" name="usuario">
                     </div>
                     <div class="datos_register">
                         <label for="">E-mail*:</label>
-                        <input type="text">
+                        <input type="text" name="email">
                     </div>
                 </div>
                 <div class="contenedor_datos_register">
                     <div class="datos_register">
                         <label for="">Nombre*:</label>
-                        <input type="text">
+                        <input type="text" name="nombre">
                     </div>
                     <div class="datos_register">
                         <label for="">Apellido*:</label>
-                        <input type="text">
+                        <input type="text" name="apellido">
                     </div>
                 </div>
                 <div class="contenedor_datos_register">
                     <div class="datos_register">
                         <label for="">contrasena*:</label>
-                        <input type="text">
+                        <input type="text" name="password1">
                     </div>
                     <div class="datos_register">
                         <label for="">Repetia su contrasena*:</label>
-                        <input type="text">
+                        <input type="text" name="password2">
+                    </div>
+                </div>
+                <div class="contenedor_datos_register">
+                    <div class="datos_register">
+                        <label for="">Telefono*:</label>
+                        <input type="text" name="Telefono">
                     </div>
                 </div>
                 <div class="contenedor_datos_register">
                     <div class="datos_register">
                         <label for="">Genero*:</label>
-                        <select name="" id="">
+                        <select name="" id="" name="genero">
                             <option value="MASCULINO">MASCULINO</option>
                             <option value="FEMENINO">FEMENINO</option>
                         </select>
                     </div>
                     <div class="datos_register">
                         <label for="">Fecha de Nacimiento*:</label>
-                        <input type="date">
+                        <input type="date" name="fechaNacimiento">
                     </div>
                 </div>
                 <div class="btn_modal_register">
@@ -280,9 +293,9 @@
         </div>
 
 
-        <script src="js/header.js"></script>
-        <script src="js/modal.js"></script>
-        <script src="js/slider.js"></script>
+        <script src="../js/header.js"></script>
+        <script src="../js/modal.js"></script>
+        <script src="../js/slider.js"></script>
     </body>
 
 </html>

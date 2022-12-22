@@ -56,7 +56,7 @@
                         </a>
                         <div class="header_menu_droptown">
                             <ul class="menu_droptown">
-                                <li><a id="dropMisCompras">Mis Compras</a></li>
+                                <li><a id="dropMisCompras" href="MisCompras">Mis Compras</a></li>
                                 <li><a id="dropTienda">Tienda</a></li>
                                 <li><a id="dropMiSaldo">Saldo: $ <%=SaldoUsuario%></a></li>
                                 <li><a id="dropCerrarSesion" href="session?cerrar=true">cerrar sesion</a></li>
@@ -190,6 +190,9 @@
                 <div class="datos_login">
                     <a href="#">Olvidastes Tu contrasena?</a>
                 </div>
+                <div style="text-align: center">
+                    <p style="font-weight: bold;color: red;">${MensajeSession}</p>
+                </div> 
                 <div class="btn_login" id="btn_login">
                     <input type="submit" value="iniciar sesion">
                     <a id="CerrarVentanaLogin">cerrar ventana</a>

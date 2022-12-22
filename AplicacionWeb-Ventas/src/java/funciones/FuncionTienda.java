@@ -15,7 +15,7 @@ public class FuncionTienda {
     ResultSet rs;
     public int RegistrarDetallesCompras(String CodigoCompra,String CodigoProducto,String NombreProducto,String DescripcionProducto, int CantidadProductoCompra, double PrecioProducto, double SubTotalDetalles,double DescuentoCompraDetalles){
         try {
-            ps = conexionSQLServer.getConexion().prepareStatement("insert into detallescompras (codigo_compra, codigo_producto, nombre_producto, descripcion_producto, cantidad_compra,precio_producto,sub_total, descuento_compra) values (?,?,?,?,?,?,?,?)");
+            ps = conexionSQLServer.getConexion().prepareStatement("insert into detallescompras (codigo_compra, codigo_producto, nombre_producto, descripcion_producto, cantidad_compra,precio_producto,sub_total, descuento_detalle) values (?,?,?,?,?,?,?,?)");
             ps.setString(1, CodigoCompra);
             ps.setString(2, CodigoProducto);
             ps.setString(3, NombreProducto);
@@ -29,15 +29,17 @@ public class FuncionTienda {
         }
         return 1;
     }
-    public int RegistrarCompra(String CodigoCompra, String CodigoUsuario,double SubTotal,double PrecioFinal,String FechaCompra, String EstadoCompra){        
+    public int RegistrarCompra(String CodigoCompra, String CodigoUsuario,double SubTotal,double DescuentoCompra,double IGVCompra,double PrecioFinal,String FechaCompra, String EstadoCompra){        
         try {
-            ps = conexionSQLServer.getConexion().prepareStatement("insert into compras (codigo_compra,codigo_usuario,sub_total, precio_total,fecha_compra,estado_compra) values (?,?,?,?,?,?)");
+            ps = conexionSQLServer.getConexion().prepareStatement("insert into compras (codigo_compra , codigo_usuario , sub_total , descuento_compra , IGV_compra , precio_total , fecha_compra,estado_compra) values (?,?,?,?,?,?,?,?)");
             ps.setString(1, CodigoCompra);
             ps.setString(2, CodigoUsuario);
             ps.setDouble(3, SubTotal);
-            ps.setDouble(4, PrecioFinal);
-            ps.setString(5, FechaCompra);
-            ps.setString(6, EstadoCompra);
+            ps.setDouble(4, DescuentoCompra);
+            ps.setDouble(5, IGVCompra);
+            ps.setDouble(6, PrecioFinal);
+            ps.setString(7, FechaCompra);
+            ps.setString(8, EstadoCompra);
             ps.executeUpdate();
         } catch (Exception e) {
         
@@ -47,7 +49,7 @@ public class FuncionTienda {
     public ArrayList<producto> ListarProducto(){
      ArrayList<producto> ListarProducto = new ArrayList<producto>();
         try {
-            ps = conexionSQLServer.getConexion().prepareStatement("select * from producto");
+            ps = conexionSQLServer.getConexion().prepareStatement("select * from productos");
             rs = ps.executeQuery();
             while (rs.next()) {                
                 producto p = new producto();
@@ -71,7 +73,7 @@ public class FuncionTienda {
     public producto BuscarProducto(String CodigoProducto){
         producto p = new producto();
         try {
-            ps = conexionSQLServer.getConexion().prepareStatement("select * from producto where codigo_producto=?");
+            ps = conexionSQLServer.getConexion().prepareStatement("select * from productos where codigo_producto=?");
             ps.setString(1, CodigoProducto);
             rs = ps.executeQuery();
             while (rs.next()) {                                

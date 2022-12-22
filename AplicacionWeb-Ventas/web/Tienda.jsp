@@ -41,11 +41,11 @@
         <header class="header" id="header">
             <div class="contenedor_header_1">
                 <div class="titulo_header">
-                    <h1><a href="#">DisenoWeb</a></h1>
+                    <h1><a href="index.jsp">DisenoWeb</a></h1>
                 </div>
                 <div class="menu_header">
                     <ul class="contenedor_menu">
-                        <li><a id="MenuTienda" href="Tienda.jsp">Tienda</a></li>
+                        <li><a id="" href="Tienda">Tienda</a></li>
                         <li><a id="abc" data-tienda="tienda">contacto</a></li>
                         <li><a class="">Nosotros</a></li>
                     </ul>
@@ -64,10 +64,10 @@
                         </a>
                         <div class="header_menu_droptown">
                             <ul class="menu_droptown">
-                                <li><a id="dropMisCompras">Mis Compras</a></li>
+                                <li><a id="dropMisCompras" href="MisCompras">Mis Compras</a></li>
                                 <li><a id="dropTienda">Tienda</a></li>
                                 <li><a id="dropMiSaldo">Saldo: $ <%=SaldoUsuario%></a></li>
-                                <li><a id="dropCerrarSesion" href="session?false=">cerrar sesion</a></li>
+                                <li><a id="dropCerrarSesion" href="session?cerrar=true">cerrar sesion</a></li>
                             </ul>
                         </div>
                     </div>

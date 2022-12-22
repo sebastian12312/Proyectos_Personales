@@ -4,11 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/sebastian/Documents/GitHub/Proyectos_Personales/AplicacionWeb-Ventas/web/index.jsp</file>
-            <file>file:/C:/Users/sebastian/Documents/GitHub/Proyectos_Personales/AplicacionWeb-Ventas/src/java/Tienda/agregar.java</file>
-            <file>file:/C:/Users/sebastian/Documents/GitHub/Proyectos_Personales/AplicacionWeb-Ventas/src/java/Tienda/Tienda.java</file>
+            <file>file:/C:/Users/sebastian/Documents/GitHub/Proyectos_Personales/AplicacionWeb-Ventas/web/usuario/DetallesCompras.jsp</file>
+            <file>file:/C:/Users/sebastian/Documents/GitHub/Proyectos_Personales/AplicacionWeb-Ventas/web/css/carrito.css</file>
+            <file>file:/C:/Users/sebastian/Documents/GitHub/Proyectos_Personales/AplicacionWeb-Ventas/web/usuario/MisCompras.jsp</file>
             <file>file:/C:/Users/sebastian/Documents/GitHub/Proyectos_Personales/AplicacionWeb-Ventas/web/Tienda.jsp</file>
-            <file>file:/C:/Users/sebastian/Documents/GitHub/Proyectos_Personales/AplicacionWeb-Ventas/web/carrito.jsp</file>
-            <file>file:/C:/Users/sebastian/Documents/GitHub/Proyectos_Personales/AplicacionWeb-Ventas/src/java/Tienda/carrito.java</file>
+            <file>file:/C:/Users/sebastian/Documents/GitHub/Proyectos_Personales/AplicacionWeb-Ventas/src/java/session/session.java</file>
         </group>
     </open-files>
 </project-private>
