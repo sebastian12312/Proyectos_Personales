@@ -1,5 +1,5 @@
-const NombreUsuario =document.getElementById('NombreUsuario').textContent + '*********'
-const $NombreUsuario = NombreUsuario.substring(0,15)+'***';
+const NombreUsuario =document.getElementById('NombreUsuario').textContent + '*******'
+const $NombreUsuario = NombreUsuario.substring(0,14);
 document.getElementById('NombreUsuario').textContent = $NombreUsuario;
 
 const LinkTienda = {

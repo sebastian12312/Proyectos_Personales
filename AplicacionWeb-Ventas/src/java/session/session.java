@@ -84,9 +84,15 @@ public class session extends HttpServlet {
                    session.setAttribute("CorreoUsuario", user.getCorreoUsuario());
                    session.setAttribute("TelefonoUsuario", user.getTelefonoUsuario());
                    session.setMaxInactiveInterval(500); 
-                   
+                     response.sendRedirect("index.jsp");
                 }else if(user.getTipoUsuario().equals("ADMINISTRADOR")){
-                
+                    session.setAttribute("usuario", user.getNickNameUsuario());
+                    session.setAttribute("CodigoUsuario", user.getCodigoUsuario());
+                    session.setAttribute("NombreUsuario", user.getNombreUsuario());
+                   session.setAttribute("ApellidoUsuario", user.getApellidoUsuario());
+                   session.setAttribute("CorreoUsuario", user.getCorreoUsuario());
+                   session.setAttribute("RangoUsuario", user.getTipoUsuario());
+                     response.sendRedirect("administrador/dashboard.jsp");
                 }
             }else{
                 MensajeSession = "USUARIO SUSPENDIDO";
@@ -97,7 +103,7 @@ public class session extends HttpServlet {
             MensajeSession = "usuario o contrasena incorrecto!";
             session.setAttribute("MensajeSession", MensajeSession);
         }
-        response.sendRedirect("index.jsp");
+      
     }
 
     /**
