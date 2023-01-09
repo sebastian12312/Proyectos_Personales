@@ -65,7 +65,7 @@ public class FuncionSession {
     public DatosUsuario Usuario(String usuario, String password){
         DatosUsuario user = new DatosUsuario();
         try {
-            ps = conexionSQLServer.getConexion().prepareStatement("select * from usuario u inner join datosUsuario d on (u.codigo_usuario = d.codigo_usuario) where u.codigo_usuario =? and u.contraseña_usuario =?");
+            ps = conexionSQLServer.getConexion().prepareStatement("select * from usuario u inner join datosUsuario d on (u.codigo_usuario = d.codigo_usuario) where u.nickname_usuario =? and u.contraseña_usuario =?");
             ps.setString(1, usuario);
             ps.setString(2, password);
             rs=ps.executeQuery();
@@ -88,7 +88,7 @@ public class FuncionSession {
         }
         return   user;   
     }
-    public int RegistrarUsuario(String CodigoUsuario,String usuario, String NombreUsuario, String ApellidoUsuario, String TelefonoUsuario,String email,String password,String GeneroUsuario,String FechaNacimiento){
+    public int RegistrarUsuario(String CodigoUsuario,String usuario, String NombreUsuario, String ApellidoUsuario, String TelefonoUsuario,String CorrreoUsuario,String password,String GeneroUsuario,String FechaNacimiento){
        
         try {
             ps = conexionSQLServer.getConexion().prepareStatement("INSERT INTO  usuario (codigo_usuario,nickname_usuario,nombre_usuario,apellido_usuario,telefono_usuario,correo_usuario,contraseña_usuario,genero_usuario,fecha_nacimiento) values (?,?,?,?,?,?,?,?,?)");
@@ -97,11 +97,12 @@ public class FuncionSession {
             ps.setString(3, NombreUsuario);
             ps.setString(4, ApellidoUsuario);
             ps.setString(5, TelefonoUsuario);
-            ps.setString(6, email);
+            ps.setString(6, CorrreoUsuario);
             ps.setString(7, password);
             ps.setString(8, GeneroUsuario);
             ps.setString(9, FechaNacimiento);
             ps.executeUpdate();
+            
             
         } catch (Exception e) {
          
@@ -111,7 +112,7 @@ public class FuncionSession {
     }
     public int RegistrarDatosUsuario(String CodigoUsuario, double SaldoUsuario, String TipoUsuario,String EstadoUSuario){
     try {
-              ps = conexionSQLServer.getConexion().prepareStatement("insert into datosUsuario (codigo_usuario,saldo_usuario,tipo_usuario,estado_usuario) values (?,?,?,?");
+              ps = conexionSQLServer.getConexion().prepareStatement("insert into datosUsuario (codigo_usuario,saldo_usuario,tipo_usuario,estado_usuario) values (?,?,?,?)");
                ps.setString(1, CodigoUsuario);
                ps.setDouble(2,SaldoUsuario);
                ps.setString(3, TipoUsuario);

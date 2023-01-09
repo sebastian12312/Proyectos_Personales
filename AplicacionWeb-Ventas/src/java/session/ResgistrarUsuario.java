@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import funciones.FuncionSession;
 import funciones.Generadores;
+
 @WebServlet(name = "ResgistrarUsuario", urlPatterns = {"/ResgistrarUsuario"})
 public class ResgistrarUsuario extends HttpServlet {
 
@@ -28,7 +29,7 @@ public class ResgistrarUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
     @Override
@@ -37,35 +38,41 @@ public class ResgistrarUsuario extends HttpServlet {
         processRequest(request, response);
     }
 
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FuncionSession funcionSesion = new FuncionSession();
-        Generadores generador = new Generadores();
-        String CodigoUsuario = generador.GeneradorDeCodigoUsuario();
-
-        String usuario = request.getParameter("usuario");
-        String email = request.getParameter("email");
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String password1 = request.getParameter("password1");
-        String Telefono = request.getParameter("Telefono");
-        String genero = request.getParameter("genero");
-        String fechaNacimiento = request.getParameter("fechaNacimiento");
-        double SaldoUsuario = 0.0;
+        Generadores generadorCodigo = new Generadores();
+        FuncionSession funcionSession = new FuncionSession();
+        String CodigoUsuario = generadorCodigo.GeneradorCodigoUsuario();        
+        String NombreUsuario = request.getParameter("NombreUsuario");
+        String ApellidoUsuario = request.getParameter("ApellidoUsuario");
+        String NickName = request.getParameter("NickName");
+        String CorreoUsuario = request.getParameter("CorreoUsuario");
+        String TelefonoUsuario = request.getParameter("TelefonoUsuario");
+        String PasswordUsuario1 = request.getParameter("PasswordUsuario1");
+        String PasswordUsuario2 = request.getParameter("PasswordUsuario2");
+        String GeneroUsuario = request.getParameter("GeneroUsuario");
+        String FechaNacimiento = request.getParameter("FechaNacimiento");
         String TipoUsuario = "USUARIO";
         String EstadoUsuario = "ACTIVO";
-        
-        int respuesta = funcionSesion.RegistrarUsuario(CodigoUsuario, usuario, nombre, apellido, Telefono, email, password1, genero, fechaNacimiento);
-        System.out.println("resultado" + respuesta);
-//        if (respuesta == 1) {
-//            int respuesta2 = funcionSesion.RegistrarDatosUsuario(CodigoUsuario, SaldoUsuario, TipoUsuario, EstadoUsuario);
-//        }else{
-//         
-//        }
-        response.sendRedirect("index.jsp");
-        
+        double SaldoUsuario = 0.0;
+        String MensajeRegistro = "";
+        String RespuestaRegisterCSS = "";
+        int respuesta = funcionSession.RegistrarUsuario(CodigoUsuario, NickName, NombreUsuario, ApellidoUsuario, TelefonoUsuario, CorreoUsuario, PasswordUsuario2, GeneroUsuario, FechaNacimiento);
+        if (respuesta == 1) {
+            int respuesta2 = funcionSession.RegistrarDatosUsuario(CodigoUsuario, SaldoUsuario, TipoUsuario, EstadoUsuario);
+            MensajeRegistro = "usuario registrado";
+            RespuestaRegisterCSS = "respuesta-modal";
+            request.setAttribute("MensajeRegistro", MensajeRegistro);
+            request.setAttribute("RespuestaRegisterCSS", RespuestaRegisterCSS);
+            request.getRequestDispatcher("registrar.jsp").forward(request, response);
+            // response.sendRedirect("registrar.jsp");
+        }else{
+            MensajeRegistro = "usuario no regisrado intente de nuevo";
+            request.setAttribute("MensajeRegistro", MensajeRegistro);
+            response.sendRedirect("registrar.jsp");
+        }
+       
     }
 
     /**

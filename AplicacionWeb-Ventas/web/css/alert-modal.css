@@ -1,0 +1,31 @@
+.contenedor-modal{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    animation: animacionAlert 1s;
+    display: none ;
+}
+.respuesta-modal{
+    display: block !important;
+    
+}
+@keyframes animacionAlert {
+    from{
+        top: -100px;
+        opacity: 0;
+    }to{
+        top: 20px;
+        opacity: 1;
+    }
+}
+.modal-valido {
+    background-color: rgb(19, 150, 19) ;
+    color: white;
+    width: 700px;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 4px 0px;
+    box-sizing: border-box;
+    border-radius:5px ;   
+     
+}

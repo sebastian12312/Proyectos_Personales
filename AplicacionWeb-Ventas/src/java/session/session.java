@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import funciones.FuncionSession;
+import javax.json.JsonObject;
 import javax.servlet.http.HttpSession;
+
 @WebServlet(name = "session", urlPatterns = {"/session"})
 public class session extends HttpServlet {
 
@@ -30,7 +32,7 @@ public class session extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,7 +52,7 @@ public class session extends HttpServlet {
         if (cerrar.equals("true")) {
             session.invalidate();
             response.sendRedirect("index.jsp");
-        }      
+        }
     }
 
     /**
@@ -69,41 +71,24 @@ public class session extends HttpServlet {
         HttpSession session = request.getSession();
         String usuario = request.getParameter("usuario");
         String password = request.getParameter("password");
-        user = funcionSesion.Usuario(usuario, password); 
+        user = funcionSesion.Usuario(usuario, password);
+
         String MensajeSession = "";
-                
-        if (user.getCorreoUsuario() != null) {
-            if (user.getEstadoUsuario().equals("ACTIVO")) {                
-                if (user.getTipoUsuario().equals("USUARIO")) {
-                   session.setAttribute("usuario", user.getNickNameUsuario());
-                   session.setAttribute("CodigoUsuario", user.getCodigoUsuario());
-                   session.setAttribute("SaldoUsuario", user.getSaldoUsuario());
-                   //
-                   session.setAttribute("NombreUsuario", user.getNombreUsuario());
-                   session.setAttribute("ApellidoUsuario", user.getApellidoUsuario());
-                   session.setAttribute("CorreoUsuario", user.getCorreoUsuario());
-                   session.setAttribute("TelefonoUsuario", user.getTelefonoUsuario());
-                   session.setMaxInactiveInterval(500); 
-                     response.sendRedirect("index.jsp");
-                }else if(user.getTipoUsuario().equals("ADMINISTRADOR")){
-                    session.setAttribute("usuario", user.getNickNameUsuario());
-                    session.setAttribute("CodigoUsuario", user.getCodigoUsuario());
-                    session.setAttribute("NombreUsuario", user.getNombreUsuario());
-                   session.setAttribute("ApellidoUsuario", user.getApellidoUsuario());
-                   session.setAttribute("CorreoUsuario", user.getCorreoUsuario());
-                   session.setAttribute("RangoUsuario", user.getTipoUsuario());
-                     response.sendRedirect("administrador/dashboard.jsp");
-                }
-            }else{
-                MensajeSession = "USUARIO SUSPENDIDO";
-                session.setAttribute("MensajeSession", MensajeSession);                                                
+        if (user.getCodigoUsuario() != null) {
+            if (user.getTipoUsuario().equals("USUARIO")) {
+                session.setAttribute("usuario", user.getNickNameUsuario());
+                session.setAttribute("CodigoUsuario", user.getCodigoUsuario());
+                session.setAttribute("SaldoUsuario", user.getSaldoUsuario());
+                response.sendRedirect("index.jsp");
+            } else if (user.getTipoUsuario().equals("ADMINISTRADOR")) {
+                response.sendRedirect("administrador/dashboard.jsp");
             }
-      
-        }else{
-            MensajeSession = "usuario o contrasena incorrecto!";
-            session.setAttribute("MensajeSession", MensajeSession);
+        } else {
+           
+         response.sendRedirect("index.jsp");
+           
         }
-      
+
     }
 
     /**

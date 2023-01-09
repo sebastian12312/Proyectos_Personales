@@ -10,7 +10,8 @@ import java.util.Calendar;
 import java.util.Random;
 
 public class Generadores {
-     Calendar calendar = Calendar.getInstance();    
+
+    Calendar calendar = Calendar.getInstance();
     String fecha;
 
     public Generadores() {
@@ -28,33 +29,37 @@ public class Generadores {
         fecha = sdf.format(calendar.getTime());
         return fecha;
     }
-    public String GeneradorDeCodigo()  {
-         char[] mayusculas = {'A','B','C','D','E','F','G','H','I','J','K','M','N','O','P','Q','R','S','T','U','V','X','Y','Z'};
-         char[] minuscula ={'a','b','c','d','e','f','g','h','i','j','k','m','n','o','p','q','r','s','t','u','v','x','y','z'};
-         char[] numeros ={'1','2','3','4','5','6','7','8','9','0'};
-         StringBuilder caracteres = new StringBuilder();
-         caracteres.append(mayusculas);
-         caracteres.append(minuscula);
-         caracteres.append(numeros);
-         StringBuilder codigo= new StringBuilder();
-         for (int i = 0; i < 30; i++) {
-            int Cantidadcodigo =  caracteres.length();
-            int NumeroRamdom = (int)(Math.random()*Cantidadcodigo);
+
+    public String GeneradorDeCodigo() {
+        char[] mayusculas = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z'};
+        char[] minuscula = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z'};
+        char[] numeros = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+        StringBuilder caracteres = new StringBuilder();
+        caracteres.append(mayusculas);
+        caracteres.append(minuscula);
+        caracteres.append(numeros);
+        StringBuilder codigo = new StringBuilder();
+        for (int i = 0; i < 30; i++) {
+            int Cantidadcodigo = caracteres.length();
+            int NumeroRamdom = (int) (Math.random() * Cantidadcodigo);
             codigo.append((caracteres.toString()).charAt(NumeroRamdom));
         }
-         return codigo.toString();
+        return codigo.toString();
     }
-    public String GeneradorDeCodigoUsuario()  {
-         char[] numeros ={'1','2','3','4','5','6','7','8','9','0'};
-         StringBuilder caracteres = new StringBuilder();
-         caracteres.append(numeros);
-         StringBuilder codigo= new StringBuilder();
-         for (int i = 0; i < 8; i++) {
-            int Cantidadcodigo =  caracteres.length();
-            int NumeroRamdom = (int)(Math.random()*Cantidadcodigo);
+
+    public String GeneradorCodigoUsuario() {
+        char[] numeros = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+        char[] mayusculas = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Y', 'Z'};
+        StringBuilder caracteres = new StringBuilder();
+        caracteres.append(numeros);
+        caracteres.append(mayusculas);
+        StringBuilder codigo = new StringBuilder();
+        for (int i = 0; i < 15; i++) {
+            int Cantidadcodigo = caracteres.length();
+            int NumeroRamdom = (int) (Math.random() * Cantidadcodigo);
             codigo.append((caracteres.toString()).charAt(NumeroRamdom));
         }
-         return codigo.toString();
+        return codigo.toString();
     }
-    
+
 }

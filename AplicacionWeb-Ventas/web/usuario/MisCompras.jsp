@@ -33,63 +33,102 @@
         Double SaldoUsuario = (Double) session.getAttribute("SaldoUsuario");
     %>
     <body>
-        <header class="header" id="header">
-            <div class="contenedor_header_1">
-                <div class="titulo_header">
-                    <h1><a href="../index.jsp">DisenoWeb</a></h1>
+              <header class="header" id="header">
+            <div class="contenedor-header">
+                <div class="contenedor-menu-header">
+                    <div class="titulo-header">
+                        <a href="#">Diseno Web</a>
+                    </div>
+                    <div class="contenedor-menu">
+                        <a href="#">Inicio</a>
+                        <a href="#">Tienda</a>
+                        <a href="#">nosotros</a>
+                        <a href="#">contacto</a>
+                    </div>
                 </div>
-                <div class="menu_header">
-                    <ul class="contenedor_menu">
-                        <li><a id="" href="../Tienda">Tienda</a></li>
-                        <li><a id="abc" data-tienda="tienda">contacto</a></li>
-                        <li><a class="">Nosotros</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="contenedor_header_2">
-                <%
-                    if (CodigoUsuario != null) {
+                <div class="contenedor-autenticacion-header">
+                    <div class="cambio-theme" id="cambio-theme">
+                        <div class="theme-light"><img src="img/validaciones/full.png" alt=""></div>
+                        <div class="theme-dark"><img src="img/validaciones/sunglasses.png" alt=""></div>
+                        <div class="buttom-theme"></div>
+                    </div>
 
-                %>
-                <div class="header_Usuario">
-                    <div class="header_datosUsuario header_droptown">
-                        <a id="NombreUsuario"><%=usuario%></a>
-                        <a href="#">
-                            <li class="fa fa-bars"></li>
-                        </a>
-                        <div class="header_menu_droptown">
-                            <ul class="menu_droptown">
-                                <li><a id="dropMisCompras" href="../MisCompras">Mis Compras</a></li>
-                                <li><a id="dropTienda" href="../Tienda">Tienda</a></li>
-                                <li><a id="dropMiSaldo">Saldo: $ <%=SaldoUsuario%></a></li>
-                                <li><a id="dropCerrarSesion" href="session?cerrar=true">cerrar sesion</a></li>
-                            </ul>
+                    <div class="datos_usuario">
+                        <%
+                            if (CodigoUsuario != null) {
+
+                        %>
+                        <div class="usuario-logueado" >
+                            <a><%=usuario%></a>
+                            <a href="#">
+                                <li class="fa fa-bars"></li>
+                            </a>
                         </div>
+
+                        <%                    
+                            } else {
+                        %>
+                        <div class="usuario-no-logueado" >
+                            <a  class="login_user">
+                                <span>
+                                    <li class="fa fa-user"></li>
+                                </span>
+                                <p> iniciar sesion </p>
+                            </a>
+                            <a href="registrar.jsp">
+                                <span>
+                                    <li class="fa fa-edit"></li>
+                                </span>
+                                <p>registrar</p>
+                            </a>
+                            <a href="#">
+                                <li class="fa fa-bars"></li>
+                            </a>
+                        </div>
+
+                        <%
+                            }
+                        %>
                     </div>
-                </div>  
-                <%
-                } else {
-                %>   
 
-
-
-                <div class="header_NoUsuario">
-                    <div class="header_sesionUsuario">
-                        <a id="AbrirVentanaLogin">
-                            <li class="fa fa-user"></li><span>iniciar sesion</span>
-                        </a>
-                        <a id="AbrirVentanaRegister">
-                            <li class="fa fa-edit"></li><span>registrar</span>
-                        </a>
-                        <a id="AbrirVentanaLateralNoUsuario">
-                            <li class="fa fa-bars"></li>
-                        </a>
-                    </div>
                 </div>
-                <%}%>
-
             </div>
         </header>
+        <div class="body_contenedor_login" id="body_contenedor_login">
+            <div class="contenedor_login">
+                <h1>Iniciar sesion</h1>
+                <div class="iniciar_redes_sociales">
+                    <a href="#">
+                        <li class="fa fa-google"></li> Google
+                    </a>
+                    <a href="#">
+                        <li class="fa fa-facebook"> </li> Facebook
+                    </a>
+                    <a href="#">
+                        <li class="fa fa-github"></li> GitHub
+                    </a>
+                </div>
+                <form action="session" method="post">
+                    <div class="division_fomulario">
+                        <label for="">usuario</label>
+                        <input type="text" placeholder="Escribe tu correo Electronico" name="usuario"  >
+                    </div>
+                    <div class="division_fomulario">
+                        <label for="">Contraseña</label>
+                        <div class="view_eye">
+                            <input type="password" placeholder="Escribe tu contraseña" id="pass1" name="password">
+                            <a data-password="view_pass1">
+                                <li class="fa fa-eye"></li>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="btn_formulario">
+                        <input type="submit" name="name" value="iniciar sesion">
+                     
+                    </div>
+                </form>
+            </div>
+        </div>
         <%
             if (CodigoUsuario != null) {
         %>
@@ -203,95 +242,9 @@
             </div>
         </div>
         <!-- modal login -->
-        <div class="contenedor_modal" id="contenedor_modal_login">
-            <form action="../session" method="post" class="formulario_login">
-                <div class="logo_modal_login">
-                    <a></a>
-                </div>
-                <div class="datos_login">
-                    <label for="">correo o usuario:</label>
-                    <input type="text" name="usuario">
-                </div>
-                <div class="datos_login">
-                    <label for="">contrasena:</label>
-                    <div class="ver_password_login">
-                        <input type="password" id="password_modal" name="password">
-                        <a id="ver_password">
-                            <li class="fa fa-eye "></li>
-                            <li class="fa fa-eye-slash eye2"></li>
-                        </a>
-                    </div>
-                </div>
+   
 
-                <div class="datos_login">
-                    <a href="#">Olvidastes Tu contrasena?</a>
-                </div>
-                <div class="btn_login" id="btn_login">
-                    <input type="submit" value="iniciar sesion">
-                    <a id="CerrarVentanaLogin">cerrar ventana</a>
-                </div>
-            </form>
-        </div>
-
-        <div class="contenedor_modal" id="contenedor_modal_register">
-            <form action="../ResgistrarUsuario" method="post" class="formulario_register">
-                <h1>REGISTRATE</h1>
-                <div class="contenedor_datos_register">
-                    <div class="datos_register">
-                        <label for="">usuario*:</label>
-                        <input type="text" name="usuario">
-                    </div>
-                    <div class="datos_register">
-                        <label for="">E-mail*:</label>
-                        <input type="text" name="email">
-                    </div>
-                </div>
-                <div class="contenedor_datos_register">
-                    <div class="datos_register">
-                        <label for="">Nombre*:</label>
-                        <input type="text" name="nombre">
-                    </div>
-                    <div class="datos_register">
-                        <label for="">Apellido*:</label>
-                        <input type="text" name="apellido">
-                    </div>
-                </div>
-                <div class="contenedor_datos_register">
-                    <div class="datos_register">
-                        <label for="">contrasena*:</label>
-                        <input type="text" name="password1">
-                    </div>
-                    <div class="datos_register">
-                        <label for="">Repetia su contrasena*:</label>
-                        <input type="text" name="password2">
-                    </div>
-                </div>
-                <div class="contenedor_datos_register">
-                    <div class="datos_register">
-                        <label for="">Telefono*:</label>
-                        <input type="text" name="Telefono">
-                    </div>
-                </div>
-                <div class="contenedor_datos_register">
-                    <div class="datos_register">
-                        <label for="">Genero*:</label>
-                        <select name="" id="" name="genero">
-                            <option value="MASCULINO">MASCULINO</option>
-                            <option value="FEMENINO">FEMENINO</option>
-                        </select>
-                    </div>
-                    <div class="datos_register">
-                        <label for="">Fecha de Nacimiento*:</label>
-                        <input type="date" name="fechaNacimiento">
-                    </div>
-                </div>
-                <div class="btn_modal_register">
-                    <input type="submit" value="registrarse">
-                    <a id="CerrarModalRegister">cerrar ventana</a>
-                </div>
-            </form>
-        </div>
-
+   
 
         <script src="../js/header.js"></script>
         <script src="../js/modal.js"></script>
