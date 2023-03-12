@@ -1,0 +1,243 @@
+.header_tienda_filtro {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-top: 10px;
+}
+
+.header_tienda_filtro_1 {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.header_tienda_filtro_1 a {
+    color: var(--color-1);
+    font-size: 22px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.header_tienda_filtro_2 label {
+    display: block;
+    font-size: 22px;
+    margin-top: 10px;
+    color: var(--color-1);
+}
+
+.header_tienda_filtro_2 select {
+    border: none;
+    border-bottom: 1px solid var(--color-1);
+    outline: none;
+    width: 300px;
+    font-size: 18px;
+    padding: 10px 0px;
+    box-sizing: border-box;
+    cursor: pointer;
+    background-color:var(--color-fondo-principal);
+}
+
+.header_tienda_filtro_2 select:optional {
+    color: var(--color-1);
+}
+
+/*general*/
+.contenedor_tienda {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+/*filtros lateral*/
+.filtro_categorias h1 {
+    text-align: center;
+    margin: 10px;
+    color: var(--color-1);
+}
+
+.carrito_compras {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.carrito_compras a {
+    color: var(--color-1);
+    text-decoration: none;
+
+}
+
+.buscar_filtro {
+    position: relative;
+}
+
+.buscar_filtro li {
+    position: absolute;
+    margin-top: 9px;
+    margin-left: -25px;
+    cursor: pointer;
+    color: rgb(141, 141, 141);
+}
+
+.buscar_filtro input {
+    width: 100%;
+    outline: none;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    color: var(--color-1);
+    border: 1px solid var(--color-fondo-2);
+    background-color: var(--color-fondo-2);
+}
+
+.contenedor_filtro_categorias {
+    border: 1px solid #ddd;
+    width: 450px;
+    height: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.filtro_tienda label {
+    display: block;
+    margin-top: 20px;
+    color: var(--color-1);
+}
+
+.filtro_tienda select {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    outline: none;
+    width: 300px;
+    font-size: 18px;
+    padding: 10px 0px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  
+}
+
+.filtro_tienda select:optional {
+    color: var(--color-1);
+    background-color: var(--color-fondo-principal);
+}
+
+.btn_filtros_tienda {
+    display: flex;
+    justify-content: center;
+}
+
+.btn_filtros_tienda input {
+    background-color: var(--color-fondo-2);
+    outline: none;
+    border: 1px solid var(--color-fondo-2);
+    padding: 8px 15px;
+    font-size: 20px;
+    border-radius: 5px;
+    color: var(--color-1);
+    cursor: pointer;
+}
+
+
+/*tienda producto*/
+.card_productos_tienda {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card_productos {
+    width: 300px;
+    border: 1px solid #ddd;
+    height: 100%;
+    margin: 20px;
+    color: var(--color-1);
+}
+
+.imagen_producto_tienda img {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+}
+
+.datos_productos_tienda {
+    text-align: center;
+}
+
+.datos_productos_tienda span {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.datos_productos_tienda p {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.btn_productos_tienda {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn_productos_tienda a {
+    text-decoration: none;
+    color: white;
+    background-color: var(--color-8);
+    padding: 10px 40px;
+    font-size: 20px;
+    margin: 10px;
+    border-radius: 5px;
+}
+.btn_productos_tienda a:hover {
+    transition: 0.5s;
+    background-color: var(--color-9);
+}
+
+/*responsive*/
+@media (max-width: 740px) {
+    .contenedor_tienda {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card_productos_tienda {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .contenedor_filtro_categorias {
+        width: 100%;
+    }
+
+    .filtro_tienda select {
+        width: 100%;
+    }
+
+    .header_tienda_filtro_2 select {
+        width: 100%;
+    }
+
+    .card_productos {
+        width: 100%;
+    }
+
+    .header_tienda_filtro {
+        max-width: 400px;
+        display: block;
+        box-sizing: border-box;
+    }
+}

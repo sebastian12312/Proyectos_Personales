@@ -1,0 +1,27 @@
+:root{
+    /*colores principales*/
+    --color-fondo-cabecera:  #263643;
+    --color-fondo-principal: #293540;
+    
+    /*colores*/
+    --color-1: rgb(255, 255, 255);
+    --color-2: #1f2c36;
+    --color-3: #0c1115 ;
+    --color-4: #1d2428;
+    --color-5: green;
+    --color-6: red;
+    --color-7:gray;
+    --color-8:rgb(255, 145, 0);
+    --color-9:rgb(176, 100, 0);
+
+    /*colores fondos botones*/
+    --color-fondo-1:#1B2A39;
+    --color-fondo-2: #364550;
+    --color-fondo-3: #1d2a38;
+    --color-fondo-4: #202831;
+    --color-fondo-5: #263643;
+    --color-fondo-6: #333f46;
+}
+body{
+    background-color: var(--color-fondo-principal);
+}

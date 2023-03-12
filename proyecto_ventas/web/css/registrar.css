@@ -1,0 +1,161 @@
+.body_contenedor_register {
+    display: flex;
+    justify-content: center;
+}
+.contenedor_formulario {
+    border: 1px solid var( --color-fondo-4);
+    box-shadow: 0px 0px 15px 4px var(--color-2);
+    width: 700px;
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: var(--color-fondo-5);
+    margin-top: 0.5%;
+
+}
+/**/
+.formulario {
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.titulo_formulario {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.titulo_formulario a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--color-1);
+}
+.titulo_formulario h1 {
+    font-size: 2.2rem;
+    text-decoration: none;
+    color: var(--color-1);
+}
+.registrar_redes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+}
+
+.registrar_redes a {
+    margin: 10px;
+    color: var(--color-1);
+    text-decoration: none;
+    font-size: 1.2rem;
+    background-color: var(--color-fondo-4);
+    border: 1px solid var(--color-fondo-4);
+    padding: 5px 15px;
+    margin-top: 20px;
+    margin-bottom: auto;
+    border-radius: 3px;
+}
+/**/
+.contenedor_division_formulario {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+.contenedor_division_formulario_{
+    display: grid;
+    grid-template-columns: 100%;
+}
+.division_fomulario {
+    margin: 10px;
+}
+
+.division_fomulario label {
+    display: block;
+    color:var(--color-1);
+    margin-bottom: 10px;
+}
+
+.division_fomulario input {
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--color-fondo-2);
+    border: 1px solid var(--color-fondo-2);
+    padding: 15px 20px;
+    color: var(--color-1);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+.division_fomulario select {
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--color-fondo-2);
+    border: 1px solid var(--color-fondo-2);
+    padding: 15px 20px;
+    color: var(--color-1);
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.division_fomulario input::placeholder {
+    color: var(--color-1);
+}
+
+.btn_formulario {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn_formulario button {
+    outline: none;
+    width: 100%;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--color-1);
+    background-color: var(--color-fondo-4);    
+    border: 1px solid var(--color-fondo-2);
+    box-shadow: 0px 0px 10px 0px var(--color-fondo-4);
+    padding: 15px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+/*eyes*/
+.view_eye input {
+    position: relative;
+}
+
+.view_eye a {
+    position: absolute;
+    margin-left: -30px;
+    margin-top: 15px;
+    color: var(--color-1);
+    cursor: pointer;
+}
+
+/*responsive*/
+@media (max-width:700px) {
+    .contenedor_division_formulario {
+        display: block;
+    }
+
+    .body_contenedor_formulario {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .contenedor_formulario {
+        width: 100%;
+        margin-top: 5%;
+    }
+
+}
+
+@media (max-width: 490px) {
+    .contenedor_login {
+        width: 100%;
+    }
+}
