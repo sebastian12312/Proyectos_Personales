@@ -39,7 +39,7 @@
            <div class="contenedor_headar_3">
                 <div class="acceso_usuario" >
                     <a class="login_user">iniciar sesion</a>
-                    <a href="#">registrar</a>
+                    <a href="registrar.jsp">registrar</a>
                     <a href="#"><li class="fa fa-bars"></li></a>
                 </div>
                 <div class="acceso_usuario_registrado" style="display: none;">

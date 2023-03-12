@@ -53,7 +53,7 @@ public class GeneradorDeCodigo {
         caracteres.append(numeros);
         caracteres.append(mayusculas);
         StringBuilder codigo = new StringBuilder();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 14; i++) {
             int Cantidadcodigo = caracteres.length();
             int NumeroRamdom = (int) (Math.random() * Cantidadcodigo);
             codigo.append((caracteres.toString()).charAt(NumeroRamdom));

@@ -17,18 +17,16 @@ import java.sql.PreparedStatement;
 import conexion.SQLserver;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.http.HttpSession;
+import org.json.JSONObject;
+
 @WebServlet(name = "registrar", urlPatterns = {"/registrar"})
 public class registrar extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    PreparedStatement ps;
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -60,11 +58,12 @@ public class registrar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PreparedStatement ps = null;
+        HttpSession session = request.getSession();
         PreparedStatement ps1;
         PreparedStatement ps2 = null;
         ResultSet rs;
         GeneradorDeCodigo generarCod = new GeneradorDeCodigo();
+
         //usuario
         String CodigoUsuario = generarCod.GenerarCodigoUsuario();
         String NickName = request.getParameter("NickName");
@@ -74,37 +73,56 @@ public class registrar extends HttpServlet {
         String PasswordUsuario = request.getParameter("PasswordUsuario");
         String PasswordUsuario2 = request.getParameter("PasswordUsuario2");
         String TelefonoUsuario = request.getParameter("TelefonoUsuario");
-        String FechaNacimiento = "21-12-12";
+        String FechaNacimiento = request.getParameter("FechaNacimiento");
         String GeneroUsuario = request.getParameter("GeneroUsuario");
+        System.out.println("codigo" + CodigoUsuario);
+        System.out.println("codigo" + NickName);
+        System.out.println("codigo" + ApellidoUsuario);
+        System.out.println("codigo" + CorreoUsuario);
+        System.out.println("codigo" + PasswordUsuario);
+        System.out.println("codigo" + TelefonoUsuario);
+        System.out.println("codigo" + FechaNacimiento);
+        System.out.println("codigo" + GeneroUsuario);
         //datos usuario
         double SaldoUsuario = 0.0;
-        String TipoUSuario = "USUARIO";
+        String TipoUsuario = "USUARIO";
         String EstadoUsuario = "ACTIVO";
-        
+        String Mensaje = "";
         try {
-            ps1 = SQLserver.getConexion().prepareStatement("INSERT INTO Usuario (CodigoUsuario,NickName,NombreUsuario,ApellidoUsuario,CorreoUsuario,PasswordUsuario,TelefonoUsuario,FechaNacimiento,Genero) values (?,?,?,?,?,?,?,?,?)");
-            ps1.setString(1, CodigoUsuario);
-            ps1.setString(2, NickName);
-            ps1.setString(3, NombreUsuario);
-            ps1.setString(4, ApellidoUsuario);
-            ps1.setString(5, CorreoUsuario);
-            ps1.setString(6, PasswordUsuario);
-            ps1.setString(7, TelefonoUsuario);
-            ps1.setString(8, FechaNacimiento);
-            ps1.setString(9, GeneroUsuario);
-            ps1.executeUpdate();                   
-            
-        } catch (Exception e) {           
+            SQLserver.getConexion().setAutoCommit(false);
+            ps = SQLserver.getConexion().prepareStatement("insert into usuario (CodigoUsuario,NickName,NombreUsuario,ApellidoUsuario,CorreoUsuario,PasswordUsuario,TelefonoUsuario,FechaNacimiento,Genero) values (?,?,?,?,?,?,?,?,?)");
+            ps.setString(1, CodigoUsuario);
+            ps.setString(2, NickName);
+            ps.setString(3, NombreUsuario);
+            ps.setString(4, ApellidoUsuario);
+            ps.setString(5, CorreoUsuario);
+            ps.setString(6, PasswordUsuario);
+            ps.setString(7, TelefonoUsuario);
+            ps.setString(8, FechaNacimiento);
+            ps.setString(9, GeneroUsuario);
+            ps.executeUpdate();
+            ps = SQLserver.getConexion().prepareStatement("insert into datosUsuario (CodigoUsuario,SaldoUsuario,TipoUsuario,EstadoUsuario) values (?,?,?,?)");
+            ps.setString(1, CodigoUsuario);
+            ps.setDouble(2, SaldoUsuario);
+            ps.setString(3, TipoUsuario);
+            ps.setString(4, EstadoUsuario);
+            ps.executeUpdate();
+            SQLserver.getConexion().commit();
+            response.getWriter().write("OK");
+            ps.close();
+        } catch (Exception e) {            
             e.printStackTrace();
-        }
-        
+            try {
+                SQLserver.getConexion().rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(registrar.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            /*el response se envia al scrib ajax con  el mismo function (response)*/
+            response.getWriter().write("Revise de nuevo");
+        }        
+
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
